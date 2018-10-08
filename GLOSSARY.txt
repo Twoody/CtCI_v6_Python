@@ -1,0 +1,274 @@
+Items to cover are in here:
+
+********************** SYMBOLS **********************
+^
+	Bit Wise XOR
+|
+	Bit wise OR
+~
+	Bit Wise Negate
+<<
+	Pop from head, and place popped item at tail.
+>>
+	Pop from Tail, and place popped item at head.
+*
+	Multiplication
++
+	Addition
+-
+	Subtraction; Think solving for x and addition...
+OR
+	Logical OR statements as seen in code.
+AND
+	Think "TRUE AND FALSE", "TRUE AND TRUE", "FALSE AND FALSE"
+NOT
+	Flip everything to the opposite
+XOR
+	FALSE AND FALSE --> FALSE
+	TRUE AND TRUE   --> FALSE
+	TRUE AND FALSE  --> TRUE
+
+************************* A *************************
+Angles
+	Note what it means to rotate by 90deg
+	Not what it means to rotate by radians...
+
+Amoritized
+	To gradually write off
+	See: Zenos Paradox
+Arrays
+
+************************* B *************************
+Bit Manipulation
+
+Bit Operator
+
+Bit Vectors
+
+BCR
+	Best Conceivable Runtime
+	There may not be an algorithm, but this runtime 
+	should be conceived and disproven either way.
+
+BFS
+	Breadth First Search;
+	Store queue of nodes to process search;
+
+Big O
+
+Big Omega
+
+Big Theta
+
+Binary Search
+
+BOD Rates
+
+Browser
+
+************************* C *************************
+Cache
+	Data store for quick access;
+	Can be queue, stack, or hardware component.
+	Usually `tag` `data` format;
+
+Ceiling
+
+Circular Linked List
+	Linked List that sets a sentinal `head` node that references itself.
+	This style avoids None checks, but requires storage of the sentinel `head`
+		node.
+	Useful for an ongoing process such as who's turn it is during a board game.
+	Useful for rewriting data that does not need to be stored, indefintely.
+		Think of a video/sound buffer and only storing so much to avoid laggy 
+			playback
+		The buffer continunes writing in a circle over already watched/listend
+			content.
+Collisions
+
+Complement
+	Bitwise Tilda (~) operator.
+
+Compression
+
+************************* D *************************
+Database
+	Piece of software that runs on a computer
+
+Database Runtime
+	Limited to hardware.
+	To enhance runtime:
+		1. Query alteration to avoid joins and aggregates
+		2. Reduce table size (think `course` table w/ Leepfrog)
+
+Directed Graph
+
+Doubly Linked List
+
+Dynamic
+	Solving such that code does not need to change
+
+************************* E *************************
+
+************************* F *************************
+Floor
+	Round down to the nearest integer;
+	Floor
+		Round down to the nearest integer;
+		`//` operator in Python`//` operator in Python
+
+
+************************* G *************************
+Gauss Summation
+	n + n-1 + n-2 + ... + 2 + 1
+	--> n(1-n)/2 --> (n-n^2)/2
+
+Grok
+	To fully enbody 
+
+************************* H *************************
+Hash Table
+	Dictionary in python...
+
+
+************************* I *************************
+Immutable
+	Cannot be changed after created
+
+"In place"
+
+************************* J *************************
+
+************************* K *************************
+
+************************* L *************************
+Leaf 
+
+Linked Lists
+	Data structure that represents a sequence of
+		nodes;
+	Singly and Doubly:
+		Next node vs next&previous node pointers;
+	Does not provide constant time access to index;
+	Does provide constant time access to head addition
+		and removal;
+	See Doubly Linked List and Circular Linked List
+
+Linux
+
+List
+
+Limits
+	Needed to know for "summation to function" transposition
+
+Linear Algebra
+
+************************* M *************************
+Matrix
+
+Modular Groups
+	
+
+Modulo Operation
+	Returns the remainder after dividing one number by another.
+	`%` operator in Python;
+	For example:
+		44%2 == 0
+		55%2 == 1
+
+Most Significant Bit
+	See Significant Bit
+
+Mutable
+	Can be changed after created
+
+************************* N *************************
+Negative Infinity
+	When we take the limit down and not up :p
+
+************************* O *************************
+
+************************* P *************************
+Palindrome
+
+Permutation
+
+
+************************* Q *************************
+Queues
+	A stack of data purposed around FIFO
+	Think append(), remove(), peek(), isEmpty()
+	Essentially a Linked List...
+	Used in BFS and cache
+	
+************************* R *************************
+Radians
+
+Refractor
+
+Resizable Arrays
+
+Router
+
+************************* S *************************
+Signed Zero
+	With binary representation of numbers, and IEEE standard,
+	we now have 1000 == -0
+	Helpful in rounding from negative numbers.
+		With celsius, it is important to know if it is 
+		freezing or not freezing (freezing is zero).
+
+Significant Bit
+	AKA: Most Significat Bit (MSB), Sign Bit, Left-Most Bit
+	The bit that typically tells us the sign.
+
+SQL
+	Databse language;
+	Opeartes in ______ time.
+
+Stack
+	A stack of data purposejdj around LIFO;
+	Think pop(), push(), peek(), isEmpty()
+	Essentially a Linked List...
+
+
+StringBuilder
+	Java 7 specific class
+	Used to work with long strings and avoid slowing
+	down runtime.
+	No real python equivalent.
+
+************************* T *************************
+Tree
+	A graph data structure that is composed of nodes
+	Consists of root node.
+	The root node has zero or more child nodes
+	Each child node has zero or more child nodes, and so on.
+	The tree cannot contain cycles.
+
+
+Types
+	List, hashmap, array, string, int, double, float, ...
+
+Typesetting
+
+************************* U *************************
+Undirected Graph
+
+Unix
+
+
+************************* V *************************
+Vectors
+
+************************* W *************************
+
+************************* X *************************
+
+************************* Y *************************
+
+************************* Z *************************
+Zenos Paradox
+	sum += (1/2^i) for i in range(0,n)
+	Taking the limit after some math tricks gives us 1.
+	Used to argue cost of resizable arrays.

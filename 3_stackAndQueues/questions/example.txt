@@ -1,0 +1,58 @@
+1. Three in One
+	Describe how you could use a single array to implement three stacks.
+	Hints:
+		2, 12, 38, 58
+
+2. Stack Min
+	How would you design a stack which, in addtion to push and pop,
+	has a function `min`, such that `min()` returns the minimum element.
+	push(), pop(), min() should all operate in O(1) time.
+	Hints:
+		#27, #59, #78
+
+3.Stack of Plates
+	Imagine a (literal) stack of plates. If the stack gets too high,
+	it might topple. Therefore, in real life, we would likely start
+	a new stack when the previous stack exceeds some threshhold.
+	
+	Implement a data structure SetOfStacks that mimics this.
+	SetOfStacks should be composed of several stacks and should 
+	create a new stack once the previous one exceeds capacity.
+
+	SetOfStacks.push() and SetOfStacks.pop() should behave 
+	identically to a single stack. That is, pop() should return the
+	same values, as it would if there were just a single stack.
+
+	Followup:
+		Implement a function popAt(int index) which performas a pop 
+		operation on a specific sub-stack.
+
+	Hings:
+		64, 81
+
+4. Queue via Stacks
+	Implement a MyQueue class which implements a queue using two stacks.
+	Hints:
+		98, 114
+
+5. Sort Stack
+	Write a propgram to sort a stack such that the smallest items are
+	on the top. You can use an additional temp stack, but you may not
+	copy the elements into any other data structure. The stack supports
+	the following operations:
+		push, pop, peek, and isempty
+	Hints:
+		15,32,43
+
+6. Animal Shelter
+	An animal shelter, which holds only dogs and cats, operates on a 
+	strictly `first in, first out` policy. People must adopt either the
+	`oldest` (based on arrival time) of all animals at the shleter, or
+	they can select whether they would prefer a dog or a cat (And will
+	receive the oldest animal of that type). They cannot select which 
+	specific animal they would like.
+
+	Create the data strcture to maintain this system and imlement 
+	operatiosn such as enqueue, dequeueAny, deueueDog, dequeueCat. 
+	You may use a LinkedList.
+
