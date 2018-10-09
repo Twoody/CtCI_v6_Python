@@ -1,0 +1,82 @@
+Example2: The Nine Balls Questions
+	You have nine balls. Eight are of the same weight, and one is 
+	heavier. You are given a balance which tells you only whether the
+	left side of the right side is heaveier.
+	Find the heavy ball in just two uses of the scale.
+
+Fact 1: There are nine balls:
+Fact 2: Eight balls way the same length.
+Fact 3: One ball ball ways more than the other 8
+Fact 4: There exists a blance.
+Fact 5: The scale tells you which side is heavier.
+
+Even though we want to get down to two uses eventually,
+what would a normal brute force routine look like?
+	We would take 4 balls, put them on one side, and put the other 4
+	balls on the other side.
+	If they are the same weight, then cycle in the ninth, unused ball.
+	A cycle would looke like:
+		1 2 3 4 | 5 6 7 8 | 9
+		9 1 2 3 | 4 5 6 7 | 8
+		8 9 1 2 | 3 4 5 6 | 7
+		...
+		2 3 4 5 || 6 7 8 9 | 1
+
+But do we need to go through all of these iterations?
+Doesn't our problem only have two variables we are checking:
+weight1 and weight2?
+If so, we can take our above example, and build cases on where
+our heavier weight might be. It only has three spots available, 
+making this test case easy to draw out:
+     x x x x | x x x x | y
+	  y x x x | x x x x | x   --> Found heavier ball
+
+	  x x x y | x x x x | x   --> Know where heavier ball is
+
+	  x x x x | x x x y | x   --> know where heavier ball is
+
+Fact 6: If the weights are a match, our odd ball is the heavy ball.
+
+Now, we can build onto our `x` and `y` example where we do not know
+the weights yet.
+If we repeat this "split them up" appraoch, we will have two of the
+same variations of both initial cases where we only know what set y is in.
+
+    x x | x y  --> we know what side y is on, but not which one is y.
+	 x y | x x  --> we know what side y is on, but not which one is y.
+
+Thus, with this first approach, we see that we will need a third attempt
+to find where `y` is.
+
+*************************************************************************
+*************************************************************************
+										Attempt 2
+*************************************************************************
+*************************************************************************
+
+We still have our rules:
+	Fact 1: There are nine balls:
+	Fact 2: Eight balls way the same length.
+	Fact 3: One ball ball ways more than the other 8
+	Fact 4: There exists a blance.
+	Fact 5: The scale tells you which side is heavier.
+	Fact 6: If the weights are a match, our odd ball is the heavy ball.
+	Fact 7: It is possible to solve the puzzle in 3 attempts
+
+The few variables we can control is how many balls we can put on the
+scale initially. We also can think of our end case more logically now.
+WE HAVE TO USE OUR SECOND ATTEMPT TO DECIPHER BETWEEN ONLY 3< BALLS.
+That is, our last attempt has to look something like:
+	x | x | y
+or
+	x | y
+
+Then, this means in our first attempt, we have to successfully remove
+6 or 7 balls from our list.
+If we split the balls into groups of 3, what then?
+  x x x | x y x || x x x  --> We know where heavy bal is 
+  x x y | x x x || x x x  --> We know where heavy ball is
+  x x x | x x x || x x y  --> We know where heavy ball is
+
+TADA! We thus found our group of three, and can now go with our final step.
+

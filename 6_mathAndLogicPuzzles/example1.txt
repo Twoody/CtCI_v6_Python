@@ -1,0 +1,36 @@
+Example1:
+	You have two ropes, and each takes exactly one hour to burn.
+	How would you use them to time exactly 15 minutes?
+	Note that the ropes are of uneven desities, so half the rope length
+	wise does not necessarily take half an hour to burn.
+	Tip:
+		Stop here and spend some time trying to sholve thie problem on your
+		own. IF you absolutely must, read through this section for hints,
+		but do so slowly.
+
+We know two facts:
+	Fact 1: We can time an hour with either piece of rope.
+	Fact 2: We can time two hours with both pieces of rope.
+
+Now, start thinking about what it means to be a rope, what it means to be
+existant with this problem, and what real world variables we can apply.
+
+BE CREATIVE!
+
+For example, what is stopping us from lighting multiple fires?
+If we light more than one fire, (the rope at both ends), we can caclutate
+30 minutes!
+
+Fact 3: We can start multiple fires at the same time.
+Fact 4: We can calculate 30 minutes (or rather x/2)
+
+And, if we start rope2 at the same time we start rope1 (implying three fires
+are all started at the same time), we can then light the last end of rope2
+at the point rope1 has finished burning.
+
+Fact 5: (Found by asking "Can we repeat fact4 and fact3)
+	We can compount fact 4 and solve for 60/2/2 --> 15!
+
+This implication means we now are burning rope2 at twice the speed.
+And rope2 only has 30minutes left, as we timed it with rope1.
+Thus, in 15 minutes, rope2 will be fully burnt out.

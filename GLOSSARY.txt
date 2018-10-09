@@ -130,6 +130,8 @@ Grok
 Hash Table
 	Dictionary in python...
 
+Hashing
+
 
 ************************* I *************************
 Immutable
@@ -193,6 +195,7 @@ Palindrome
 
 Permutation
 
+Prime Numbers
 
 ************************* Q *************************
 Queues
@@ -206,9 +209,13 @@ Radians
 
 Refractor
 
+Relatively Prime Numbers
+
 Resizable Arrays
 
 Router
+
+RSA Encryption
 
 ************************* S *************************
 Signed Zero
