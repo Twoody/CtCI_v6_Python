@@ -101,6 +101,10 @@ Database Runtime
 		1. Query alteration to avoid joins and aggregates
 		2. Reduce table size (think `course` table w/ Leepfrog)
 
+Deterministic Finite Automata
+	AKA DFA, Finite Automata
+	See Finite Automata
+
 Directed Graph
 
 Doubly Linked List
@@ -111,6 +115,23 @@ Dynamic
 ************************* E *************************
 
 ************************* F *************************
+Finite
+
+Finite Automata
+	A simple idealized machine used to recognize pattersn within
+	input taken from some character set or alphabet.
+	The job of an FA is to accept or reject an input depending on
+	whether the pattern defined by the FA occurrs in the input.
+	Consists of:
+		A finite set S of N states
+		A special start state
+		A set of final states
+		A set of transitions from one state to another, labeled
+			Labeling from our char/alphabet set.
+	We can represent an FA graphically, with node for staes, and 
+	arcs for transitions.
+	We execute our FA  
+
 Floor
 	Round down to the nearest integer;
 	Floor
@@ -187,6 +208,18 @@ Mutable
 ************************* N *************************
 Negative Infinity
 	When we take the limit down and not up :p
+
+Nondeterministic Automata
+	If a unique next state (as specified by the transitions)
+	does not exist for a pair of states and possible input
+	characters, then it is said to be nondeterministic.
+	An NDFA can follow many paths simultansously.
+	If any series of valid transitions reaches an accepting 
+	state, then we say the FA accepts the input.
+	It is as if we allow the FA to 'guess' which of several 
+	tranitions to take from a given state, and the FA always
+	guesses right.
+	...
 
 ************************* O *************************
 
