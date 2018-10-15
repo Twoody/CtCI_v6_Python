@@ -47,9 +47,9 @@ def nullifyMatrix(matrix):
 
 def q8():
 	foo  = [ [1,2,3], [3,4,0], [4,0,1] ]
-	nFoo = [ [1,0,0], [3,0,0], [4,0,0] ]
+	nFoo = [ [1,0,0], [0,0,0], [0,0,0] ]
 	assert nullifyMatrix(foo) == nFoo
-	print('PASSED ALL TESTS')
+	print('Q8: PASSED ALL TESTS')
 	return True
 
 if __name__ == "__main__":

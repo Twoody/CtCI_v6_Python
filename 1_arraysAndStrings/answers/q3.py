@@ -1,4 +1,9 @@
 import re
+def printbanner():
+	print("****************************************")
+	print("***********  Q3: PASSED TEST  **********")
+	print("****************************************")
+	print("")
 
 def urlify(_input):
 	_input = re.sub(" ", "%20", _input)
@@ -32,6 +37,6 @@ def q3():
 	assert urlify(" ") == "%20"
 	assert urlify("foo ") == "foo%20"
 	assert urlify("  ") == "%20%20"
-
+	printbanner()
 if __name__ == "__main__":
 	q3()

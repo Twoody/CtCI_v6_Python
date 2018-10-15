@@ -1,6 +1,6 @@
 def printbanner():
 	print("****************************************")
-	print("**************  PASS TEST  *************")
+	print("***********  Q2: PASSED TEST  **********")
 	print("****************************************")
 	print("")
 def isPermutationInString(smallS, bigS):
@@ -58,24 +58,14 @@ def q2():
 		as its worse rutime. O(n^2+n) + O(n)
 		However, depending on the strings, this might be okay...
 	'''
-	print("******************************* QUESTION 1.2  *******************************")
 	assert isPermutationInString("Foo", "Bar") == -1
-	printbanner()
-
 	assert isPermutationInString("Foo", "BaooFr") == 2
-	printbanner()
-	
 	bigS   = "wihr no rest"
 	assert isPermutationInString('erst', bigS) == 8
-	printbanner()
-	
 	bigS   = "res rest"
 	assert isPermutationInString('erst', bigS) == 4
-	printbanner()
-	
 	bigS   = "this is a completely random sentence that I will strip the whitespace from and try to avoid punctuation by creating a very long and verbose run on sentence such that the reader will be dumbfounded by its theft of brevity with no rest"
 	assert isPermutationInString('erst', bigS) == 229
-	print("*****************************************************************************")
 	printbanner()
 
 if __name__ == "__main__":
