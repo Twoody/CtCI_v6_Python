@@ -29,7 +29,8 @@ Extending vs. Implementing
 
 
 Synchronization and Locks in Java
-	Threads within a given process share the same memory space, which is both a positive and a negative.
+	Threads within a given process share the same memory space, which is both a 
+	positive and a negative.
 	It enables threads to share data, which can be valuable. However, it also creates
 	the opportunity for issues when two threads modify a resource at the same time.
 	Java provides synchronization in order to control access to shared resources.
@@ -50,10 +51,53 @@ Deadlocks and Deadlock Prevention
 	
 
 Questions
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
+1. Thread vs. Process
+	What is the difference between a thread and a process?
+
+2. Context Switch
+	How would you measure the time spent in a context switch?
+
+3. Dining Philosophers
+	Many philosophers are dining at a circular table.
+	There exists one left chopstick and one right chopstick.
+	A philosopher needs both chopsticks to eat.
+	A philosopher always picks up the left chopstick before the right one.
+	If all philosophers reached for the left chopstick at the same time, we would
+	have a deadlock.
+	Using threads and locks, implement a simulation of the dining philosophers 
+	problem that prevents deadlocks.
+
+4. Deadlock-Free Class
+	Design a class which provides a lock only if there are no possible deadlocks.
+
+5. Call in Order
+	Suppose we have the following code:
+		```
+			public class Foo{
+				public Foo(){ ... }
+				public void first(){ ... }
+				public void second(){ ... }
+				public void third(){ ... }
+			}
+		```
+	The same instance of Foo will be passed to three different threads.
+	threadA will call Foo.first()
+	threadB will call Foo.second()
+	threadC will call Foo.third()
+	Design a mechanism to ensure that first is called before second, and second
+	is called before third.
+
+6. Synchronized Methods
+	Given a class with synchronized method A and a normal method B, find if two
+	threads can execute A at the same time. 
+	Find if the threads can execute A and B at the same time.
+
+7. FizzBuzz
+	Print the numbers from 1 to n.
+	If the number is divisble by 3, print 'Fizz' instead.
+	If the number is divisble by 5, print 'Buzz' instead.
+	If the number is divisble by 3 and 5, print 'FizzBuzz' instead.
+	Do this with 4 threads running.
+	3 threads check for a specific divisibility.
+	1 thread retrieves the numbers.
+
