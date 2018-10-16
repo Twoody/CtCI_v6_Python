@@ -36,6 +36,11 @@ Angles
 Amoritized
 	To gradually write off
 	See: Zenos Paradox
+
+Arc
+	If a node is a vertex, then the arc is the edge FOR DIRECTED GRAPH;
+
+
 Arrays
 
 ************************* B *************************
@@ -106,6 +111,7 @@ Deterministic Finite Automata
 	See Finite Automata
 
 Directed Graph
+	A graph such that the points follow a path and are directional;
 
 Doubly Linked List
 
@@ -113,6 +119,9 @@ Dynamic
 	Solving such that code does not need to change
 
 ************************* E *************************
+Edge
+	For an undirected graph, the edge connects two nodes;
+
 
 ************************* F *************************
 Finite

@@ -45,7 +45,7 @@ def q1():
 	assert isunique(s3) == True
 	assert isunique(s4) == True
 	assert isunique(s6) == True
-	print('PASSED ALL TESTS')
+	print('Q1: PASSED ALL TESTS')
 	return True
 
 if __name__ == "__main__":
