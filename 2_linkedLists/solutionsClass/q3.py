@@ -13,7 +13,7 @@
 			not allowed?
 '''
 import sys
-sys.path.append('/Users/tannerleewoody/Workspace/google/CtCI/linkedLists/')
+sys.path.append('/Users/tannerleewoody/Workspace/google/CtCI/2_linkedLists/')
 from LinkedList import LinkedList
 
 def deleteMiddleNode(ll):

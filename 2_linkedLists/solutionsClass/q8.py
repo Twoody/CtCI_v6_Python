@@ -17,7 +17,7 @@
 		Do we just point tail to head and head to tail?
 '''
 import sys
-sys.path.append('/Users/tannerleewoody/Workspace/google/CtCI/linkedLists/')
+sys.path.append('/Users/tannerleewoody/Workspace/google/CtCI/2_linkedLists/')
 from LinkedList import LinkedList
 from LLCircular import LLCircular
 

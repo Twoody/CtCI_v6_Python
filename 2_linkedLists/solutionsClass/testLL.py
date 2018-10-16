@@ -3,7 +3,7 @@ Just a file to test import and a few of the basic principal functions that defin
 a linked list.
 '''
 import sys
-sys.path.append('/Users/tannerleewoody/Workspace/google/CtCI/linkedLists/')
+sys.path.append('/Users/tannerleewoody/Workspace/google/CtCI/2_linkedLists/')
 from LinkedList import LinkedList
 from LLCircular import LLCircular
 
