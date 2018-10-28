@@ -21,19 +21,19 @@ Types of Trees:
 
 		Common types of balanced trees are red-black trees and AVL trees.
 
-	Complete Binary trees
+	Complete Binary trees (CBT)
 		A CBT is a binary tree in which ever level of the tree is fully
 		filled, except for perhaps the last level.
 		To the extent that the last level is filled, it is filled left to
 		right.
 
-	Full Binary Tree
+	Full Binary Tree (FBT)
 		a FBT is a binary tree in which every node has either zero or two
 		children.
 		That is, no nodes have only one child.
 
 	Perfect Binary Tree:
-		A PBT is BOTH an FBT and a CMT.
+		A PBT is BOTH an FBT and a CBT.
 		All leaf nodes will be at the same level, and this level has the
 		maximum number of nodes.
 		Note that PFT's are rare in interviews and in real life.

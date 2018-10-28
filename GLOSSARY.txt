@@ -43,6 +43,8 @@ Arc
 
 Arrays
 
+AVL Tree
+
 ************************* B *************************
 Bit Manipulation
 
@@ -62,8 +64,34 @@ BFS
 Big O
 
 Big Omega
+	Lower bound of the run time for a given function/process;
+	For example, we want to find to find the height of our neighbor, Brian.
+		We know our neighbor Alex is 5'10 and neighbor Charlie is 6'2.
+		Brian is taller than Alex but shorter than Charlie.
+		We can say Brian is Big-Omega(Alex).
 
 Big Theta
+	Tight bound of the run time for a given function/process;
+	For example, we want to find to find the height of our neighbor, Brian.
+		And even though we have different neighbors, Alex and Charlie, whose 
+		height we already know, we use scientific methods and tools to find 
+		Brian's height instead. In this case, a tape measurer.
+	For example, we have a function that runs the following in it's code:
+			1. Check if 'a' in a sentence,
+			2. Check if 'b' follows 'a'.
+		This would in turn run (1) the length of the input, n.
+		This would in turn run (2) +1 on n.
+		This implies our runtime is `n+1`. Let us define this as a function:
+			f(n) = n+1  <-- Neighbor Brian
+		In our neighbor case, we know this runs between `Alex` of `n` and 
+		`Charlie` which is `2n`.
+		We can then make this tight bound by comparing Alex and Brian.
+		This comparison spans n as n approachs inifinity":
+			Lim(n) = Lim(n + 1) --> Lim(n/n) = Lim(n/n + 1/n)
+			--> 1 + 1/INF --> 1+0 --> 1
+		We can even generalize this to be Big-Theta(f(n)) is true for all
+		versions of cn, which implies f(n) runs in O(n).
+
 
 Binary Search
 
