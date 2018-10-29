@@ -5,134 +5,6 @@
 
 Thoughts:
 
-	                   .......27......
-                     /               \
-                    20               31
-                   /  \             /  \
-                  /    \           /    \
-                 16    21         29    40
-                / \   /  \       /  \   / \
-                  17     24     28  30 35 45
-
-	     
-		INSERT: 19
-	                     .........27..........
-                       /                     \
-                    ..20..                   31
-                   /      \                 /  \
-                  /        \               /    \
-                 17        24             29    40
-                /  \       /  \           /  \   / \
-               16  19    21             28  30 35 45
-
-
-		INSERT: 20
-	                     .........27..........                   `20` goes between 21 and 17;
-                       /                     \                  
-                    ..21...                ..31..                  
-                   /       \              /      \                  
-                  / `20`    \            /        \                  
-                 17         24          29        40                  
-                /  \       /  \        /  \       / \                  
-               16  19     22          28  30     35 45                  
-	
-	                     .........27..........                   Insert 20 left of 21;
-                       /                     \                  Assign new node 21 the previous left
-                    ..21...                ..31..                 branch of 21;
-                   /       \              /      \              Run a check on the balance of the tree;
-                  /         \            /        \             See that 20 has a balanceFactor of 1;
-                 20         24          29        40                  balanceFactor is +1 for L-Node
-                /  \       /  \        /  \       / \                 balancrFactor is -1 for R-Node
-               17         22          28  30     35 45          Resolve balance factor (next step);
-	           /  \
-	          16  19
-	
-	                     .........27..........                  Find a spot for `21`;
-                       /                     \                 Put `21` left of 22;
-                    ..20...                ..31..                Assign `22`.leftChild to `21`
-                   /       \              /      \             Assign `21`.rightChild to `20`;
-                  /         \            /        \                 This "erases" `21`s branch;
-                 17         24          29        40           Run a check on the balance of the tree;
-                /  \       /  \        /  \       / \          See `22` has balanceFactor of 1;
-               16  19     22          28  30     35 45         Resolve balance factor (next step);
-                         /                                                      
-                        21                                                      
-		
-	                     .........27..........                   Find a spot for `24`;
-                       /                     \                  Put `24` right of `22`;
-                    ..20...                ..31..                 Assign `24` to `20`.rightChild;
-                   /       \              /      \              Assign `22` to `20`.leftChild;     
-                  /         \            /        \             Recheck Balances of the tree;
-                 17         22          29        40              All balances are at zero;
-                /  \       /  \        /  \      /  \           
-               16  19     21  24      28  30    35  45                    
-
-
-		INSERT: 32
-		                  .........27............
-                       /                       \
-                    ..20...                  ..32...
-                   /       \                /       \
-                  /         \              /         \
-                 17         21          ..30..        40
-                /  \       /  \        /      \       / \
-               16  19     22  24      28      31     35 45
-                                        \
-                                        29
-
-			INSERT: 39
-		                  .........27...............
-                       /                          \
-                    ..20...                  .....32....
-                   /       \                /           \
-                  /         \              /             \
-                 17         21          ..30..         ..40..
-                /  \       /  \        /      \       /      \
-               16  19     22  24      28      31     35       45
-                                        \             \
-                                        29            39
-
-
-			INSERT: 25
-		                  .........27...............
-                       /                          \
-                    ..20...                  .....32....
-                   /       \                /           \
-                  /         \              /             \
-                 17         21          ..30..         ..40..
-                /  \       /  \        /      \       /      \
-               16  19     22  24      28      31     35       45
-                                \       \             \
-                                25      29            39
-	
-
-			INSERT:26
-		             .........27.................                       Set curNode to BT.head;
-                  /                            \                      Check if 26 is greater than 
-               ..21...                    .....32....                   curNode.value;
-              /       \                  /           \                26 is less than curNode.value;
-             /         \                /             \               Set curNode to curNode.rightchild;
-            17         21            ..30..         ..40..            (LOOP UNTIL `25`);
-           /  \       /  \          /      \       /      \           `25` is curNode;
-          16  19     22  24        28      31     35      45          curNode.leftChild is None;
-                           \        \             \                   Check balance of tree;
-                           25       29            39                  See that 24 has balanceFactor of 2;
-	                          \                                        `24` and `25` need left rotated;
-	                          26                                       (Move onto next step)
-
-
-		             .........27.................                       Move `24` to `25`.leftchild;
-                  /                            \                      Move `25` to `21`.rightchild;
-               ..21...                    .....32....                 
-              /       \                  /           \                
-             /         \                /             \               
-            17         21            ..30..         ..40..            
-           /  \       /  \          /      \       /      \           
-          16  19     22  25        28      31     35      45          
-                        /  \        \             \                   
-                       24  26       29            39                  
-
-
 	
 '''
 import sys
@@ -143,15 +15,20 @@ class Node:
 		self.parent      = parent
 		self.value       = val
 		self.depth       = 0
+		self.height      = 0
 		if self.parent is not None:
 			self.depth = self.parent.depth+1
+	def __str__(self):
+		return str(self.value)
+	def __eq__(self, other):
+		return self.value == other.value
 	def getbalance(self):
 		balance = 0
 		if self.rightchild is not None:
 			if self.rightchild.rightchild is not None:
 				balance += 1
 			if self.rightchild.leftchild is not None:
-				balance += 1
+				balance -= 1
 			balance += 1
 		if self.leftchild is not None:
 			if self.leftchild.rightchild is not None:
@@ -160,22 +37,52 @@ class Node:
 				balance -= 1
 			balance -= 1
 		return balance
+	def getheight(self):
+		''' recursive function; Uses -1 if not balanced; '''
+		if self is None:
+			return 0
+		h1 = getheight(self.right)
+		h2 = getheight(self.left)
+		if h1 == -1 or h2 == -1:
+			return -1
+		if abs( h1-h2 ) > 1:
+			return -1
+		if h1 >= h2:
+			return h1 + 1
+		return h2 + 1
 		
 class BTree:
 	def __init__(self, values=None):
-		self.head   = None
-		self.height = -1
+		self.head = None
+		self.size = 0
 		if values is not None:
 			self.add(v)
+	def __str__(self):
+		''' DFS to print tree '''
+		s  = ''         #string
+		c  = self.head  #curnode
+		st = []         #stack
+		v  = []         #visited
+		w  = []         #walks
+		st.append(c)
+		while len(st) != 0:
+			c = 
+			neighbors = [st[-1].
+
+
+
+	def isBalanced(self, node=None):
+		if node is None:
+			node = self.head
+		return node.getheight() != -1
+
 	def add(self, value):
 		if isinstance(value, list):
 			for item in list:
 				self.add(item)
 		if self.head is None:
 			self.head = Node(value)
-			self.height
 			return self.head
-		#else
 		curnode = self.head
 		while curnode is not None:
 			if curnode.value > value:
@@ -183,46 +90,53 @@ class BTree:
 					curnode = curnode.leftchild
 				else:
 					curnode.leftchild = Node(value, curnode)
-					self.balanceTree()
-					return curnode.leftchild
+					if curnode.parent is not None and isBalanced(curnode.parent) == False:
+						#We added to the left of the tree, meaning we right rotate
+						self.rightrotate(curnode.parent)
+				self.size +=1
+				return curnode.leftchild
 			elif curnode.value < value:
 				if curnode.rightchild is not None:
 					curnode = curnode.rightchild
 				else:
 					curnode.rightchild = Node(value, curnode)
-					self.balanceTree()
-					return curnode.rightchild
+					if curnode.parent is not None and isBalanced(curnode.parent) == False:
+						#We added to the right of the tree, meaning we left rotate
+						self.leftrotate(curnode.parent)
+				self.size +=1
+				return curnode.rightchild
 			else:
 				raise KeyError('ERROR: AVL TREE: KEY ' + str(value) + ' ALREADY EXISTS')
 		raise ValueError('ERROR: AVL TREE: COULD NOT ALLOCATE VALUE `' + str(value) + '` INTO TREE')
 	
-	def balanceTree(self):
-		cur = self.head
-		while cur is not None:
-			balance = cur.getbalance(cur)
-			if balance == 2:
-				#There are not right children two nodes deep
-				pNode = cur.parent
-				lNode = cur.leftchild
-				lNode.rightchild = cur
-				cur.parent     = lNode
-				cur.rightchild = None
-				if pNode.rightchild is cur:
-					pNode.rightchild = lNode
-				elif pNode.leftchild is cur:
-					pNode.leftchild = lNode
-			elif balance == -2:
-				
-
-
-			
-
-
+	def rightrotate(self, node):
+		#There are not right children two nodes deep
+		pNode            = node.parent
+		lNode            = node.leftchild
+		lNode.rightchild = node
+		node.parent      = lNode
+		node.rightchild  = None
+		if pNode.rightchild is cur:
+			pNode.rightchild = lNode
+		elif pNode.leftchild is cur:
+			pNode.leftchild = lNode
+		return True
+	def leftrotate(self, node):
+		pNode           = node.parent
+		rNode           = node.rightchild
+		rNode.leftchild = node
+		node.parent     = rNode
+		node.leftchild  = None
+		if pNode.leftchild is cur:
+			pNode.leftchild = rNode
+		elif pNode.rightchild is cur:
+			pNode.rightchild = rNode
+		return True
 
 def q2():
-	a = [1,2,3,4,5,6,7,8,11,12,14,15,16,22,33,44,55,66]
-	b = BTree(a)
-	print('q1: PASSED ALL TESTS')
+	b = BTree()
+	b.add(10)
+	print('q2: PASSED ALL TESTS')
 
 if __name__ == "__main__":
 	q2()
