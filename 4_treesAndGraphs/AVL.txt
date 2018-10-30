@@ -1,0 +1,235 @@
+Init:
+	The initial stages of an AVL (balanced binary tree) must have a height of -1.
+	The first node will be of depth 0.
+          _____
+			|     |
+			|  20 |	<-- bt[0]
+			|_____|
+
+Adding nodes:
+                     _____
+                    |     |
+                    |  20 |           Insert 10:
+                    |_____|             Check if 10 is greater than BT.head;
+                   /       \            10 is less than 20;
+                  /         \           Check if curNode.left;
+                 /           \          curNode.left is None;
+            ___/_                       Set curNode.left to Node(10);
+           |     |
+           |  10 |
+           |_____|
+ 
+
+                     _____
+                    |     |
+                    |  20 |          Insert 30
+                    |_____|            Check if 30 is greater than BT.head;
+                   /       \           30 is greater than 20
+                  /         \          Check if curNode.right;
+                 /           \         curNode.right is None;
+             ___/_           _\___     Set curNode.right to Node(30)
+            |     |         |     |
+            |  10 |         |  30 |
+            |_____|         |_____|
+ 
+
+
+                     _____
+                    |     |
+                    |  20 |              Insert 40
+                    |_____|                Check if 40 is greater than BT.head;
+                   /       \               40 is greater than BT.head;
+                  /         \              Check if curNode.right;
+                 /           \             curNode.right is Node(30)
+             ___/_           _\___         Check if 40 is greater than curNode.value;
+            |     |         |     |        40 is greater than Node(30)
+            |  10 |         |  30 |        Check if curNode.right;
+            |_____|         |_____|        curNode.right is None;
+                                   \       Set curNode.right to Node(40)
+                                    \
+                                     \
+                                     _\___
+                                    |     |
+                                    |  40 |
+                                    |_____|
+              
+                       _____
+                      |     |
+                      |  20 |             Insert 15
+                      |_____|               Set curNode to BT.head;
+                     /       \              Check if 15 is greater than curNode.value;
+                    /         \             15 is less than curNode.value (which is 20);
+                   /           \            Check if curNode.left;
+                  /             \           curNode.left is Node(10) -- set curNode to curNode.left;
+                 /               \          Check if 15 is greater than curNode.value;
+             ___/_               _\___      15 is greater than curNode.value;
+            |     |             |     |     Check if curNode.right;
+            |  10 |             |  30 |     curNode.right is None;
+            |_____|             |_____|     Set curNode.right to 15;
+                   \                   \
+                    \                   \
+                     \                   \
+                     _\___               _\___
+                    |     |             |     |
+                    | 15  |             |  40 |
+                    |_____|             |_____|
+											   
+ 
+                       _____
+                      |     |
+                      |  20 |                  Insert 17
+                      |_____|                    Set curNode to BT.head;
+                     /       \                   Check if 17 is greater than curNode.value;
+                    /         \                  17 is less than curNode.value (which is 20);
+                   /           \                 Set curNode.balanceFactor -=1
+                  /             \                Check if curNode.left;
+                 /               \               curNode.left is Node(10) -- set curNode to curNode.left;
+             ___/_               _\___           Check if 17 is greater than curNode.value;
+            |     |             |     |          17 is greater than curNode.value;
+            |  10 |             |  30 |          Set curNode.balanceFactor -=1
+            |_____|             |_____|          Check if curNode.right;
+                   \                   \         curNode.right is None;
+                    \                   \        Set curNode.right to 15;
+                     \                   \      
+                     _\___               _\___
+                    |     |             |     |
+                    | 15  |             |  40 |
+                    |_____|             |_____|
+                           \
+                            \
+                             \
+                             _\___
+                            |     |
+                            | 17  |
+                            |_____|
+
+
+
+	                   .......27......
+                     /               \
+                    20               31
+                   /  \             /  \
+                  /    \           /    \
+                 16    21         29    40
+                / \   /  \       /  \   / \
+                  17     24     28  30 35 45
+
+	     
+		INSERT: 19
+	                     .........27..........
+                       /                     \
+                    ..20..                   31
+                   /      \                 /  \
+                  /        \               /    \
+                 17        24             29    40
+                /  \       /  \           /  \   / \
+               16  19    21             28  30 35 45
+
+
+		INSERT: 20
+	                     .........27..........                   `20` goes between 21 and 17;
+                       /                     \                  
+                    ..21...                ..31..                  
+                   /       \              /      \                  
+                  / `20`    \            /        \                  
+                 17         24          29        40                  
+                /  \       /  \        /  \       / \                  
+               16  19     22          28  30     35 45                  
+	
+	                     .........27..........                   Insert 20 left of 21;
+                       /                     \                  Assign new node 21 the previous left
+                    ..21...                ..31..                 branch of 21;
+                   /       \              /      \              Run a check on the balance of the tree;
+                  /         \            /        \             See that 20 has a balanceFactor of 1;
+                 20         24          29        40                  balanceFactor is +1 for L-Node
+                /  \       /  \        /  \       / \                 balancrFactor is -1 for R-Node
+               17         22          28  30     35 45          Resolve balance factor (next step);
+	           /  \
+	          16  19
+	
+	                     .........27..........                  Find a spot for `21`;
+                       /                     \                 Put `21` left of 22;
+                    ..20...                ..31..                Assign `22`.leftChild to `21`
+                   /       \              /      \             Assign `21`.rightChild to `20`;
+                  /         \            /        \                 This "erases" `21`s branch;
+                 17         24          29        40           Run a check on the balance of the tree;
+                /  \       /  \        /  \       / \          See `22` has balanceFactor of 1;
+               16  19     22          28  30     35 45         Resolve balance factor (next step);
+                         /                                                      
+                        21                                                      
+		
+	                     .........27..........                   Find a spot for `24`;
+                       /                     \                  Put `24` right of `22`;
+                    ..20...                ..31..                 Assign `24` to `20`.rightChild;
+                   /       \              /      \              Assign `22` to `20`.leftChild;     
+                  /         \            /        \             Recheck Balances of the tree;
+                 17         22          29        40              All balances are at zero;
+                /  \       /  \        /  \      /  \           
+               16  19     21  24      28  30    35  45                    
+
+
+		INSERT: 32
+		                  .........27............
+                       /                       \
+                    ..20...                  ..32...
+                   /       \                /       \
+                  /         \              /         \
+                 17         21          ..30..        40
+                /  \       /  \        /      \       / \
+               16  19     22  24      28      31     35 45
+                                        \
+                                        29
+
+			INSERT: 39
+		                  .........27...............
+                       /                          \
+                    ..20...                  .....32....
+                   /       \                /           \
+                  /         \              /             \
+                 17         21          ..30..         ..40..
+                /  \       /  \        /      \       /      \
+               16  19     22  24      28      31     35       45
+                                        \             \
+                                        29            39
+
+
+			INSERT: 25
+		                  .........27...............
+                       /                          \
+                    ..20...                  .....32....
+                   /       \                /           \
+                  /         \              /             \
+                 17         21          ..30..         ..40..
+                /  \       /  \        /      \       /      \
+               16  19     22  24      28      31     35       45
+                                \       \             \
+                                25      29            39
+	
+
+			INSERT:26
+		             .........27.................                       Set curNode to BT.head;
+                  /                            \                      Check if 26 is greater than 
+               ..21...                    .....32....                   curNode.value;
+              /       \                  /           \                26 is less than curNode.value;
+             /         \                /             \               Set curNode to curNode.rightchild;
+            17         21            ..30..         ..40..            (LOOP UNTIL `25`);
+           /  \       /  \          /      \       /      \           `25` is curNode;
+          16  19     22  24        28      31     35      45          curNode.leftChild is None;
+                           \        \             \                   Check balance of tree;
+                           25       29            39                  See that 24 has balanceFactor of 2;
+	                          \                                        `24` and `25` need left rotated;
+	                          26                                       (Move onto next step)
+
+
+		             .........27.................                       Move `24` to `25`.leftchild;
+                  /                            \                      Move `25` to `21`.rightchild;
+               ..21...                    .....32....                 
+              /       \                  /           \                
+             /         \                /             \               
+            17         21            ..30..         ..40..            
+           /  \       /  \          /      \       /      \           
+          16  19     22  25        28      31     35      45          
+                        /  \        \             \                   
+                       24  26       29            39                  
+
+
