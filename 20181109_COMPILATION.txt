@@ -1,0 +1,2582 @@
+Author:
+	Tanner 20180919
+Link:
+	github.com/TWoody
+
+INDEX:
+	Chapter 1	|	Arrays and Strings
+	Chapter 2	|	Linked Lists
+	Chapter 3	|	Stacks and Queues
+	Chapter 4	|	Trees and Graphs
+	Chapter 5	|	Bit Manipulation
+	Chapter 6	|	Math and Logic Puzzles
+	Chapter 7	|	Object Oriented Design
+	Chapter 8	|	Rescursion and Being Dynamic
+	Chapter 9	|	System Design and Scalability
+	Chapter 10	|	Sorting and Searching
+	Chapter 11	|	Testing
+	Chapter 12	|	Python
+	Chapter 13	|	Dev and Web Tools
+	Chapter 14	|	Databases
+	Chapter 15	|	Threads and Locks
+	Chapter 16	|	Moderate Problems
+	Chapter 17	|	Hard Problems
+	Glossary
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 1
+********************************************************************************
+********************************************************************************
+Tanner 20180919
+
+Covers:
+	Hash Tables
+		Def:
+			Data structure that maps keys to values for highly 
+			efficient lookup.
+			In python, this is a dic.
+		Warnings:
+			Collisions...
+			Make sure to store key value pairs as key array of pairs
+			to avoid collisions if similar hash.
+		Runtime:
+			Lookups are considered O(1)
+			Worst case is O(n) where one hash stores array of all
+			elements.
+	ArrayList and Resizable Arrays
+		Def:
+			Grows as items are appended.
+			Considered fixed length.
+		Func:
+			When array is full, array doubles in size.
+			The amortized insertion runtime is still O(1)
+				If array is size n, increase size by:
+					n/2	//final cap increase
+					n/4	//prev cap increase
+					n/8	//prev cap increase
+					...	//
+					2		//second cap increase
+					1		//first cap increase
+				Therefore, we can do some math tricks to have
+				1+2+SUMMATION(1/(2^n)) ~ 1+2+1 
+					**See zenos paradox
+
+	String Builder
+		Java 7 specific
+
+Q1.1: Is Unique
+	Implement an algorithm to determine if a string has all 
+	unique characters.
+	Implement a second algorithm if you cannot use data structs.
+
+Q1.2: Check Permutation
+	Given two strings, write a method to decide if one is a 
+	permutation of the other.
+
+Q1.3: URLify
+	Write a method to replace all spaces in a string with %20.
+	You may assume that the string has sufficient space at the
+	end to hold the additional character, and that you are
+	given the `true` length of the string.
+	(NOTE: if in java, use a character array to perform in place)
+	Example:
+		I: "Mr John Smith    ", 13
+		O: "Mr%20John%20Smith"
+
+Q1.4: Palindrome Permutation
+	Given a string, write a function to check if it is a
+	palindrome. A palindrome is a word or phrase that is the same
+	forwards and backwards. A permutation is a rearrangement of
+	letters. The palindrome does not need to be limited to just
+	dictionary words.
+
+Q1.5: One Away
+	There are three types of edits that can be performed on 
+	strings:
+		insert, remove, replace
+	Given two strings, determine if string2 is one edit from
+	string1.
+
+Q1.6: String Compression
+	Implement a method to perform basic string compression
+	using the counts of repeated characters. For example, the 
+	string `aabcccccaaa` would become `a2b1c5a3`. If the 
+	compressed string would not become smaller than the original
+	string, your method should return the original string.
+
+Q1.7: Rotate Matrix
+	Given an image represented by an NxN matrix, where each
+	pixel in the image is 4 bytes, write a method to rotate the
+	image by 90 degrees. Can you do this in place?
+	
+Q1.8: Zero Matrix
+	Write an algorithm such that if an element in an MxN matrix
+	is 0, its entire row and column are set to zero.
+
+Q1.9: String Rotation
+	Assume you have a method `isSubstring` which check if one
+	word is a substring of another. Given two strings, `s1` and
+	`s2`, write code to check if `s2` is a rotation of `s1`
+	using only on call to isSubstring.
+	For example: `waterbottle` is a rotation of `erbottlewat`
+linked
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 2
+********************************************************************************
+********************************************************************************
+Questions:
+	1. Remove Dups
+			Write code to remove duplicates from an unsorted linked list.
+			Follow up:
+				How would you solve the problem if a temporary buffer is 
+				not allowed?
+
+	2. Return Kth to Last
+			Implement an algorithm to find the kth to last element of a 
+			singly linked list.
+			Hint:
+				#8, #25, #41, #67, #126
+
+	3. Delete Middle Node
+			Implement an algorithm to delete a node in the middle of a
+			singly linked list, given only access to that node.
+			The middle is any node but the first and last node, not 
+			necessarily the exact middle. 
+			Example:
+				I: the node c from the linked list:
+					a -> b -> c -> d -> e -> f
+				O: Nothing is returned. The new linked list looks like:
+					a -> b -> d -> e -> f
+
+	4. Partition
+			Write code to partition a linked list around a value x, such 
+			that all nodes less than x come before all nodes greater than 
+			or equal to x. IF x is contained within the list, the values 
+			of x only need to be after the elements less than x. The 
+			partition element x can appear anywhere in the `right partition`; 
+			It does not need to appear between the left and right partitions.
+			Example:
+				I:  3-> 5-> 8-> 5 ->10-> 2-> 1
+				O:  3-> 1-> 2-> 10-> 5-> 5-> 8
+
+	5. Sum Lists
+			Given two numbers represented by a linked list, where each
+			node contains a single digit, write a function that adds the
+			two numbers and returns the sum as a linked list.
+			The digits are stored in reverse order, such that the 1's
+			digit is at the head of the list.
+			Example:
+				Input: (7-> 1 -> 6) + (5 -> 9 -> 2).
+					That is, 617 + 295.
+				Output: 2 -> 1 -> 9.
+					That is, 912.
+			FOLLOW UP:
+				Suppose the digits are stored in forward order. 
+				Repeat the above problem.
+				EXAMPLE
+					Input: (6 -> 1 -> 7) + (2 -> 9 -> 5).
+						That is,617 + 295. 
+					Output: 9 -> 1 -> 2.
+						That is, 912.
+			Hints: 
+				#7, #30, #71, #95, #109
+
+	6. Palindrome
+			Implement a function to check if a linked list is a palindrome.
+			Hints:
+				5, 13, 29, 61, 101
+
+	7. Intersection
+			Given two singly linked lists, determine if the two lists 
+			intersect.
+			Return the intersecting node.
+			Note that the intersection is defined based on reference, not
+			value.
+			That is, if the kth node of the first linked list is the exact
+			same node (by reference) as the jth node of the second linked
+			list, then they are intersecting
+
+	8. Loop Detections:
+			Given a circular linked list, implement an algorithm that returns
+			the node at the `beginning` of the loop.
+			Definitions:
+				Circular linked list is a "corrupt" linked list in which
+				a nodes next pointer points to an earlier node, so as to make
+				a loop in the linked list.
+			Example:
+				I: A->B->C->D->E->C (The same as C earlier)
+				O: C
+			Hints:
+				50, 69, 83, 90
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 3
+********************************************************************************
+********************************************************************************
+1. Three in One
+	Describe how you could use a single array to implement three stacks.
+	Hints:
+		2, 12, 38, 58
+
+2. Stack Min
+	How would you design a stack which, in addition to push and pop,
+	has a function `min`, such that `min()` returns the minimum element.
+	push(), pop(), min() should all operate in O(1) time.
+	Hints:
+		#27, #59, #78
+
+3.Stack of Plates
+	Imagine a (literal) stack of plates. If the stack gets too high,
+	it might topple. Therefore, in real life, we would likely start
+	a new stack when the previous stack exceeds some threshold.
+	
+	Implement a data structure SetOfStacks that mimics this.
+	SetOfStacks should be composed of several stacks and should 
+	create a new stack once the previous one exceeds capacity.
+
+	SetOfStacks.push() and SetOfStacks.pop() should behave 
+	identically to a single stack. That is, pop() should return the
+	same values, as it would if there were just a single stack.
+
+	Followup:
+		Implement a function popAt(int index) which performs a pop 
+		operation on a specific sub-stack.
+
+	Hints:
+		64, 81
+
+4. Queue via Stacks
+	Implement a MyQueue class which implements a queue using two stacks.
+	Hints:
+		98, 114
+
+5. Sort Stack
+	Write a program to sort a stack such that the smallest items are
+	on the top. You can use an additional temp stack, but you may not
+	copy the elements into any other data structure. The stack supports
+	the following operations:
+		push, pop, peek, and isempty
+	Hints:
+		15,32,43
+
+6. Animal Shelter
+	An animal shelter, which holds only dogs and cats, operates on a 
+	strictly `first in, first out` policy. People must adopt either the
+	`oldest` (based on arrival time) of all animals at the shelter, or
+	they can select whether they would prefer a dog or a cat (And will
+	receive the oldest animal of that type). They cannot select which 
+	specific animal they would like.
+
+	Create the data structure to maintain this system and implement 
+	operations such as enqueue, dequeueAny, deueueDog, dequeueCat. 
+	You may use a LinkedList.
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 4
+********************************************************************************
+********************************************************************************
+
+*************************************************************************
+*********************************  TREES ********************************
+*************************************************************************
+
+Types of Trees:
+	A tree can be thought of as a starting root node, with nodes added
+	one after the other. These added nodes are child nodes. And each
+	node has zero or more child nodes.
+
+	Trees cannot contain cycles.
+
+	Trees vs. Binary Trees
+		A binary tree is a tree in which each node has up to two children.
+		Not all trees are binary trees.
+		Some binary tree definitions are in context to repeated values,
+		and if they are allowed or not.
+
+	Balanced vs. Unbalanced
+		While many trees are balances, not all are.
+		ASK YOUR INTERVIEWER IF IT IS BALANCED.
+
+		Common types of balanced trees are red-black trees and AVL trees.
+
+	Complete Binary trees (CBT)
+		A CBT is a binary tree in which ever level of the tree is fully
+		filled, except for perhaps the last level.
+		To the extent that the last level is filled, it is filled left to
+		right.
+
+	Full Binary Tree (FBT)
+		a FBT is a binary tree in which every node has either zero or two
+		children.
+		That is, no nodes have only one child.
+
+	Perfect Binary Tree:
+		A PBT is BOTH an FBT and a CBT.
+		All leaf nodes will be at the same level, and this level has the
+		maximum number of nodes.
+		Note that PFT's are rare in interviews and in real life.
+
+Binary Tree Traversal
+	Prior to INTERVIEW you should be comfortable implementing:
+		in-order
+		post-order
+		pre-order
+	, tree traversals.
+
+	In order Traversal:
+		Visit the left branch, then the current node, and finally, the 
+		right branch.
+
+	Pre-Order Traversal
+		Visits the current node before its child nodes
+		The root is always the first node visited.
+
+	Post-Order Traversal:
+		Visits the current node AFTER its child nodes.
+		The root is always the last node visited.
+
+Binary Heaps (min and max heaps)
+	Max heaps
+		Equivalent to min heaps, but elements are in descending order
+		rather than ascending order.
+	
+	Min Heaps
+		A CBT (totally filled other than the rightmost elements on the 
+		last level) where each node is smaller than its children.
+
+		The root is the min element in the tree.
+		
+		Two key operations: INSERT and EXTRACT_MIN
+		Insert:
+			Start by inserting the element at the bottom.
+			Insert at the rightmost spot so as to maintain the CBT property.
+			Then, we fix the tree by swapping the new element with its
+			parent, until we find an appropriate spot for the element.
+			We essentially bubble up the min element.
+		Extract_min:
+			Finding the min element of a min-heap is easy:
+				ITS ALWAYS AT THE TOP.
+			The tricker part is how to remove it.
+				Remove the min element and swap it with the last element in 
+				the heap (bottom right element).
+				Bubble down this element, swapping it with one of its 
+				children until the min heap property is restored.
+			Swapping either left or right child depends on the values.
+			There is no inherent ordering between the left and right 
+			elements, but you'll need to take the smaller one in order to
+			maintain the min-heap ordering.
+			This algorithm will also take O(log n).
+
+Tries (Prefix Trees)
+	Variant of an n-ary tree in which characters are stored at each node.
+	Each path down the tree may represent a word.
+
+	The * nodes (aka null nodes) are often used to indicate complete words.
+	For example, the fact that there is a * node under MANY is a complete
+	word.
+	The existence of the MA path indicates there are words that start with
+	MA.
+	The actual implementation of these * nodes might be a special type of
+	child (such as a terminatingTrieNode, inherited from TrieNode).
+	Or, we could use just a boolean flag `terminates` within the parent
+	node.
+	A node in a trie could have anywhere from 1 through ALPHABET_SIZE+1 
+	children (or 0 through ALPHABET_SIZE, if boolean flag instead of a *
+	node).
+	Trie's are used to store english words:
+		prefix, root, suffix
+	
+*************************************************************************
+********************************* GRAPHS ********************************
+*************************************************************************
+	
+A tree is actually a type of graph.
+
+A graph is a collection of nodes with edges between (some of) them.
+	Graphs can be either directed or undirected.
+		Directed edges are like a one-way street.
+		Undirected edges are like a two-way street.
+	Graph might consist of multiple isolated subgraphs
+	Connected graphs
+	Acyclic Graphs and Cyclic Graphs
+		no cycle vs cycle
+
+Connected Graph
+	If there is a path between every pair of vertices
+
+Adjacency List
+	This is the most common way to represent a graph.
+	Every vertex (i.e. node) stores a list of adjacent vertices.
+	In an undirected graph, an edge like (a,b) would be stored twice:
+		once in a's adjacent vertices
+		once in b's adjacent vertices
+
+Adjacency Matrices
+	An adjacency matrix is an NxN boolean matrice (where N is the node cnt).
+	A true value at m[i][j] indicates an edge from node i to node j.
+	In an undirected graph, and adjacency matrix will be symmetric.
+	In a directed graph, an adjacency matrix will not always be symmetric.
+
+	The same graph algs that are used on adjacency lists (BFS, etc.) can
+	be performed with adjacency matrices, but they may be somewhat less
+	efficient.
+	In the adjacency list representation you can easily iterate through
+	the neighbors of a node.
+	In an adjacency matrix representation, you will need to iterate all the
+	nodes to identify a node's neighbor.
+
+Graph Search
+	DFS and BFS
+		BFS uses Queues
+		DFS uses
+
+Additional Terms:
+	Topological Sort
+	Dijkstra's Algorithm
+	AVL Trees
+	Red-Black Trees
+
+
+*************************************************************************
+******************************  QUESTIONS  ******************************
+*************************************************************************
+
+1. Route Between Nodes
+	Give a directed graph, design an algorithm to find out whether there
+	is a route between two nodes.
+
+2. Minimal Tree
+	Given a sorted (increasing order) array with unique integer elements, 
+	write an algorithm to create a binary tree with minimal height.
+
+3. List of Depths:
+	Given a binary tree, design an algorithm which creates a linked list
+	of all the nodes at each depth (e.g. if you have a tree with depth D,
+	you will have D linked lists).
+
+4. Check Balanced
+	Implement a function to check if a binary tree is balanced.
+	For the purpose of this question, a balanced tree is defined to be a 
+	tree such that the height of the two subtrees of any node never differ
+	by more than one.
+
+5. Validate BTS
+	Implement a function to check if a binary tree is a binary search tree.
+
+6. Successor
+	Write an algorithm to find the `next` node (i.e. in-order successor) of
+	a given node in a BST. You may assume that each node has a link to its
+	parent.
+
+7. Build Order
+	You are given a list of projects and a list of dependencies (which is a
+	list of pairs of projects, where the second project is dependent on
+	the first project). All of a project's dependencies must be built 
+	before the project is. 
+	Find a build order that will allow the projects to be built. If there is 
+	no valid build order, return an error.
+	EXAMPLE:
+		I: projects: a,b,c,d,e,f
+			dependencies: (a,d), (f,b), (b,d), (f,a), (d,c)
+		O: f,e,a,b,d,c
+
+8. First Common Ancestor
+	Design an algorithm and write code to find the first common ancestor
+	of two nodes in a Binary Tree.
+	Avoid storing additional nodes in a data structure.
+	Note:
+		This is not necessarily a BST
+
+9. BTS Sequences
+	A Binary search tree was created by traversing through an array from 
+	left to right and inserting each element. Given a BST with distinct 
+	element, print all possible arrays that could have led to this tree.
+	EXAMPLE:
+		I: { '2':[1,3], '1':[], '3'[] }
+		O: {2,1,3}, {2,3,1}
+
+10. Check Subtree
+	T1 and T2 are two very large binary trees, with T1 much bigger than T2.
+	Create an algorithm to determine if T2 is a subtree of T1.
+	A tree T2 is a subtree of T1 if there exists a node n in T1 such that 
+	the subtree of n is identical to T2.
+		That is, if you cut off the tree at node, n, 
+		the two trees would be identical.
+
+11. Random Node
+	You are implementing a binary tree class from scratch which in addition 
+	to `insert()`, `find()`, and `delete()` has a method getRandomNode() 
+	which returns a random node from the tree.
+	All nodes should be equally likely to be chosen. 
+	Design and implement an algorithm to getRandomNode, and explain how you 
+	would implement the rest of the methods.
+
+12. Paths with Sums
+	You are given a BT in which each node contains an integer value (which 
+	might be positive or negative). 
+	Design an algorithm to count the total paths that sum to a given value.
+	The path does not need to start or end at the root of a leaf, but it 
+	must go downwards (traveling only from parent nodes to child nodes).
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 5
+********************************************************************************
+********************************************************************************
+
+*************************************************************************
+****************************  BIT MANIPULATION  *************************
+*************************************************************************
+Be ready to manipulate bits by hand and in code.
+
+TEST PROBLEMS:
+	 _______________________________________________
+	|                    |                          |
+	|	1. 0110 + 0010		|	7.		1101 >> 2			|
+	|	2. 0011 + 0010		|	8.		1101 ^ 0101			|
+	|	3. 0110 - 0011		|	9.		0110 + 0110			|
+	|	4. 1000 - 0110		|	10.	0100 * 0011			|
+	|	5. 0011 * 0101		|	11.	1101 ^ (~1101)		|
+	|	6. 0011 * 0011		|	11.	1011 & (~0 << 2)	|
+	|____________________|__________________________|
+
+Bit Tricks and Tips:
+	Multiplying by 2 is equivalent to shifting by 1.
+	Multiplying by 4 is equivalent to shifting by 2 ...
+	binary1 XOR binary2 such that binary2 is the negated value
+		of binary1 IS ALWAYS 1.
+	
+	The following expressions are useful in bit manipulation.
+	DO NOT MEMORIZE THEM.
+	But, grok them.
+
+		 ____________________________________________
+		|              |              |              |
+		| X^ 0s  = x	|	x & 0s = 0	|	x | 0s = x  |
+		| x ^ 1s = ~x	|	x & 1s = x	|	x | 1s = 1s |
+		| x ^ x  = 0	|	x & x  = x	|	x | x  = x  |
+		|______________|______________|______________|
+
+Two's Complement and Negative Numbers
+	Computers store integers in two's complement representation.
+	A positive number is represented as itself while a negative 
+	number is represented as the two's complement of its 
+	absolute value (with a 1 in its sign bit to indicate that a
+	negative value). 
+
+	Let N be a number of bits to be allowed for storage.
+	The twos complement of a N-bit number is the complement of 
+	the number with respect to 2^N.
+
+	For example, take -3 as a 4-bit integer.
+	We want the complement with respect to 2^3, which is 8.
+	The complement of 3 (the absolute value of -3) with respect
+	to 8 is 5. (Because 5+3 is 8???)
+	5 in binary is 101. Therefore, -r in binary as a 4-bit int
+	is 1101, with the first sign letting us know it is negative.
+	In other words, the binary rep of -K as an N-bit number is
+		concat(1, x^(N-1)-K)
+	
+	Another way to look at this is that we inver the bits in the
+	positive representation and then add 1.
+	3 is 011 in binary. Flip the bits to get 100 and add 001.
+	With 101, prepend the sign bit to get 1101.
+
+	Just remember that there is typically signed zero's esp. with
+	IEEE. For example: 1000 == -0 AND 0000 == +0
+
+Arithmetic vs Logical Right Shift (>> operator)
+	In a logical right shift, we shift the bits and put a 0 in the
+	significant bit. Indicated with >>
+	In arithmetic shift, we shift the values, but retain the
+	signed bit.
+
+*************************************************************************
+****************************  Answers to Test  **************************
+*******************************  Problems  ******************************
+*************************************************************************
+Answers to Test Problems:
+	1. 1000 == 0110 + 0010
+		Simple movement of bits
+
+	2. 0101 == 0011 + 0010
+		Simple movement of bits
+
+	3. 0011 == 0110 - 0011
+		"0011 + XXXX == 0110"
+
+	4. 0110 + XXXX == 1000
+		0010 == XXXX
+
+	5. 3 * 5 --> 0011 * 0101 -->   0011
+							           x 0101
+						            _________
+				      	      		 0011
+				      	      		00000
+				      	      	  001100
+				      	      +	 0000000
+				      	      ____________
+				      	          0001111
+		1111
+
+	6. 0011 * 0011 --> 0011 + 00110 --> 1001
+		(1+2)*(1+2) --> 3*3 --> 8+1 --> 1001
+
+	7.	1101 --> 0110 --> 0011
+	8. 1101 ^ 0101 --> EXCLUSIVE OR --> XOR
+		1XOR0 --> 1 \
+		1XOR1 --> 0  \ --> 1000  
+		0XOR0 --> 0  /
+		1XOR1 --> 0 /
+
+	9. 0110 + 0110 --> 0110 * 10 --> 01100
+
+	10. 0100 * 0011 --> 0011 * 0100 --> 1100
+
+	11. 1111 --> XOR with Negated
+		1101 ^ (~1101)  --> 1101 ^ 0010 --> 1111
+
+	12. 1000
+		1011 & (~0 << 2) --> 1011 & (~0000 <<2) --> 1011 & (1111 <<2)
+		--> 001011 & (111100) --> 001000 --> 1000 --> 8
+	
+More problems:
+		5. 6 * 6 --> 0110 * 0110 -->   0110
+							              x 0110
+							            _________
+					      	      		 0000
+					      	      		01100
+					      	      	  011000
+				   	   	      +	 0000000
+				      		      ____________
+				      		          0100100
+
+		100100 == 0+0+4+0+0+32 == 36
+
+
+*************************************************************************
+*******************************  QUESTIONS  *****************************
+*************************************************************************
+
+1. INSERTION
+	You are given two 32-bit numbers, N and M. You are also given two bit
+	positions, i and j.
+	Write a method to insert M into N such that M starts at bit j and ends
+	at bit i.
+	You can assume that the bits j through i have enough space to fit all
+	of M. That is, if M = 10011, you can assume that there are at least
+	5-bits between j and i.
+	You would not, for example have j=3 and i=2 because M could not fully
+	fit between bit 3 and bit 2.
+	Example:
+		I: N = 10000000000, M = 10011, i=2, j=6
+		O: N = 10001001100
+
+2. Binary to String
+	Given a real number between o and 1 that is passed in as a double,
+	print the binary representation.
+	If the number cannot be rep'ed accurately in binary with at most 32
+	characters, print 'ERROR'.
+
+3. Flip Bits to Win
+	You have an int and you can flip exactly one bit from a 0 to a 1.
+	Write code to find the length of the longest sequence of 1s you 
+	could create.
+	Example:
+		I: 1775 --> 110111011111
+		O: 8    -->       1
+
+4. Next Number
+	Given a positive int, print the next smallest and the next largest 
+	number that have the same number of 1 bits in their binary 
+	representation.
+
+5. Debugger
+	Explain what the following code does:
+		( ( n & (n-1) ) == 0 )
+	1000 & (1000 - 1) --> 1000 & 0111 --> 0000  --> True
+	0001 & 0001-1 --> 0000 & 0000 --> 0000      --> True
+	1111 & 1111-1 --> 1111 & 1110 --> 1110      --> False
+
+	I suspect it is just looking to see if it is odd :D
+
+G. Conversion
+	Write a function to determine the number of bits you would need to
+	flip to convert int A to int B.
+	Example:
+		I: (29, 15) --> (11101, 011111)
+		O: 2
+
+7. Pairwise Swap:
+	
+8. Draw Line
+	A monochrome screen is stored as a single array of bytes, allowing
+	8 consecutive pixels to be stored in one byte.
+	The screen has width w, where w is divisible by 8.
+	The height of the screen, can be derived from the length of the 
+	array and the width.
+	Implement a function that draws a horizontal line from (x1, y) to 
+	(x2, y).
+	The method signature should look something like:
+		drawLine(byte[] screen, int w, int x1, int x2, int y)
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 6
+********************************************************************************
+********************************************************************************
+
+*************************************************************************
+*****************************  Math and Logic  **************************
+*************************************************************************
+Before spending time on this chapter, review your companies policy
+on what questions are viable for the interview, and which are not.
+Be aware that with some companies who use employees to interview,
+such that the employees can pick their own interview questions.
+Sometimes, these individuals will bend the rules, and it is
+important to keep that in mind!
+
+Prime numbers:
+	A prime number is a number only divisible by one and itself.
+	When coding, remember our math, and how we only need to iterate up
+	to sqrrt(n) where n is the number to be verified as prime or not.
+
+Probability
+	Venn Diagrams, Unions, Intersections, Finding the opposite (i.e. if
+	probability of event A is 33%, then event B is probability 77%), 
+	Independence, Mutual Exclusivity (which makes `Finding the opposite`
+	work), 
+
+Problem Tackling Approach
+	1. Start Talking
+	2. Develop rules and laws the problem must abide by
+		A. Ratios
+		B. Base Cases
+		C. Induction
+
+Example1:
+	You have two ropes, and each takes exactly one hour to burn.
+	How would you use them to time exactly 15 minutes?
+	Note that the ropes are of uneven densities, so half the rope length
+	wise does not necessarily take half an hour to burn.
+	Tip:
+		Stop here and spend some time trying to solve this problem on your
+		own. IF you absolutely must, read through this section for hints,
+		but do so slowly.
+
+Worst Case Shifting
+	Many brainteasers are worst-case minimization problems, worded either
+	in terms of minimizing an action or in doing something at most a 
+	specific number of times.
+	A Useful technique is to try to `balance` the worse case.
+	That is, if an early decision results in a skewing of the worst case,
+	we can sometimes change the decision to balance out the worst-case.
+	For Example (Example2):
+		The Nine Balls Questions
+		You have nine balls. Eight are of the same weight, and one is 
+		heavier. You are given a balance which tells you only whether the
+		left side of the right side is heavier.
+		Find the heavy ball in just two uses of the scale.
+
+Algorithm Approaches:
+	If you get stuck, remember that these are all typically just
+	algorithms that have fancy words and technical aspects removed.
+	Look for a base case, BUILD, and DIY.
+	Just try and keep talking
+
+*************************************************************************
+*****************************  Math and Logic  **************************
+*************************************************************************
+
+
+
+
+
+
+
+
+*************************************************************************
+****************************  BIT MANIPULATION  *************************
+*************************************************************************
+1.	The Heavy Pull
+
+
+
+2.	Basketball
+
+
+
+3.	Dominos
+
+
+
+4.	Ants on a Triangle
+
+
+
+5.	Jugs of Water
+
+
+
+6.	Blue-Eyed Island
+
+
+
+7.	The Apocalypse
+
+
+
+8.	The egg drop problems
+
+
+
+9.	100 Lockers
+
+
+
+10.	Poison
+	You have 1000 jugs of water. 1 is poisoned.
+	You have 10 test strips, which can be used to detect poison.
+	A single drop of poison will turn the test strip positive permanently.
+	You can put any number of drops on a test strip at once, and you can 
+	reuse a test strip as many times as you'd like.
+	However, you can only run tests once per day, and it takes seven days
+	to return a result. How would you figure out the poisoned bottle in as 
+	few days as possible?
+
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 7
+********************************************************************************
+********************************************************************************
+
+****************************  OBJECT ORIENTED  **************************
+*********************************  Design  ******************************
+
+OOD questions require a candidate to sketch out the classes and methods 
+to implement technical problems or real-life objects.
+These problems give -- or at least are believed to give -- an interviewer 
+insight into your coding style.
+
+These questions are not so much about regurgitating design patterns as they are 
+about demonstrating that you understand how to create elegant, maintainable, OOD code.
+Poor performance on this type of question may raise serious red flags.
+
+How To Approach
+	1. Handle Ambiguity
+	2. Define the core Objects
+	3. Analyze Relationships
+	4. Investigate Actions
+
+	Handle Ambiguity:
+		OOD questions are often intentionally vague in order to test whether
+		or not you will make assumptions or if you'll ask clarifying questions.
+		After all, a developer who just codes something without understanding what
+		she is expected to create wastes the company's time and money, and may
+		create much more serious issues.
+		
+		When being asked an OOD questions, go through the six W's:
+			1. Who		3. When		5. How
+			2. What		4. Why		6. Where
+
+		For example, suppose you were asked to describe the ood for a 
+		coffee maker.
+		Is it industrial/personal? Where does it live? What does the 
+		coffee maker do? How does it do it? What does the coffee maker
+		need to operate correctly? Who commands the coffee maker?
+	
+	Define the Core Objects:
+		In regards to our coffee maker again, core objects are things like
+		Filters, Grinder, Beans, Water, Pot, Electricity, Operator, Scale.
+	   _________________________________________________________________________
+	  |Filer.isClean()	| Filter.getCount()  |	Electricity.hasCurrent()		|
+	  |Water.getLevel()	| Pot.hasCoffee()	|	Electricity.measureCurr()		|
+	  |Beans.isGround()	| Pot.isClean()		|	Filter.hasBeans()        		|
+	  |Beans.getGrind()	| Pot.empty()		|	Scale.weigh(foo) 			|
+	  |Beans.setGrind()	| Beans.putInTrash()	|	Grinder.grind(beans)    		|
+	  |__________________|____________________|________________________________	|
+
+		Notice the use of `getters` and `setters`, as well as the usage of
+		the suffix `is` and `has`.
+		Notice the use of action verbs like `put`, `empty`, `grind`, `weigh`.
+		Finally, we want to think of the datatypes for each value.
+		Are we expected to inspect each bean, such that all beans are ground
+		to our precise level? Or are we just going to dump a weight of beans
+		into the grinder, grind, and now have a case representation on how
+		these beans have been ground?
+		This is one of the nice things about computers, we could in fact
+		have a job put in place to grind each individual bean. However, in
+		the real world, grinding each individual bean is idiotic and a huge
+		waste of time.
+
+	Analyze Relationships
+		Which objects are members of which other objects?
+		Do any objects inherit from any others?
+		Are relationships many-to-many or one-to-many?
+		We need to be careful here. Just because our filter is wet, does
+		not mean that we have used the filter. Some people `bloom` their
+		beans. And just because the Pot is full of coffee does not mean that
+		we cannot make more coffee. But, we cannot make more coffee if the
+		Water is all used and if the Electricity is off. 
+		Thus, there is a one to many relationship between the Water and
+		Electricity that effects the Filter, Pot, Beans, Scale, etc.
+		And then we have a relationship between the temperature of the water
+		and the beans:
+			w1 = Water.getTemp() # == 100 #Celsius
+			w2 = Water.getTemp() # == 1   #Celsius
+			b  = Filter.getBeans() #float of weight of beans in metric
+			while(w1.getLevel()):
+				while(w1.getTemp() < 100):
+					w1.increaseHeat()
+				CoffeeMaker.pump(w1) #Putting water on beans/filter via a pump
+			'''
+			def CoffeeMaker.pump():
+				f = CoffeeMaker.getFilter()
+				w = CoffeeMaker.getWater()
+				if not f.hasFilter():
+					raise Error('Needs filter!')
+				elif not f.hasBeans():
+					#Viable option for tea
+				elif not f.isClean():
+					raise Error('filter is dirty ::vomit::')
+				#More error messages and feedback for user...
+				else:
+					#passed all error msg's and opening valve for water
+					#to go on the filter and beans.
+					CoffeeMaker.releaseValve()
+			'''
+
+	Investigate Actions
+		Make a few flow charts to address the use case of your code
+		and how it will in fact operate.
+		For example:
+			An Operator puts a Filter in the CoffeeMaker,
+			fills the Water with cold tap water,
+			weighs out their Beans on the Scale,
+			grinds the Beans in the Grinder,
+			puts Beans in the Filter,
+			presses `Start` button on CoffeeMaker.
+			CoffeeMaker notifies Operator Water is all used,
+			Operator pours themselves a cup of coffee.
+
+Design Patterns:
+	Design patterns are usually beyond the scope of an interview.
+	The interviewer is more interested in our knowledge and capabilities.
+	That beins said, make sure that the SINGLE RESPONSIBILITY PRINCIPLE is
+	always being followed, as well as the Factory Method.
+
+	Singleton Class:
+		Ensures that a class has only one instance and ensures access 
+		to the instance through application. This is useful in cases 
+		where you have a 'global' object with exactly one instance.
+		
+		In terms of practical use Singleton patterns are used in logging, 
+		caches, thread pools, configuration settings, device driver objects.
+		For example, reading a config file at bootup, which needs to be 
+		encapsulated, can be done by encapsulation in a Singleton.
+		Another example is a similar Log class that all objects use, to
+		log their output, erros, etc.
+		This Log class should only be called once, and then encapsulated
+		in a Singleton, where we know if some other thread or process is
+		accessing it.
+		
+		In Python, we can accomplish this with a decorator or a metaclass.
+		A metaclass is recommended.
+	
+	Factory Method:
+		Offers an interface for creating an instance of a class, with its 
+		subclasses deciding which class to instantiate.
+		You might want to implement this with the Creator class being abstract
+		and not providing an implementation for the Factory method.
+		Or, you could have the Creator class be a concrete class that provides
+		an implementation for the Factory method.
+		In this case, the Factory method would take a parameter representing 
+		which class to instantiate.
+
+
+*************************************************************************
+****************************  BIT MANIPULATION  *************************
+*************************************************************************
+1. Deck of Cards
+	Design the data structure for a generic deck of cards.
+	Explain how you would subclass the data struct. to implement BlackJack.
+
+2. Call Center
+	There is a call center with employee positions:
+		Respondent, Manager, Director
+	A phone call must first go to a Respondent. 
+	IFF the Respondent cannot handle the call, it is sent to Manager.
+	IFF not Manager.isFree() or not Manager.canHandle(problem),
+		then send problem to Director.
+	Design the classes and data structures for this problem.
+	Implement a method `dispatchCall` which assigns a call to the
+	first available employee.
+
+3. Jukebox
+	Design a musical jukebox using OOD.
+
+4. Parking Lot
+	Design a parking lot using OOD.
+
+5. Online Book Reader
+	Design the data struct for an online book reader system.
+
+6. Jigsaw
+	Implement an NxN jigsaw puzzle. Design the data struct and explain
+	an algorithm to solve the puzzle.
+	You can assume that you have a `fitsWith()` method, which when 
+	passed two puzzle pieces, returns True or False.
+
+7. Chat Server
+	Explain how you would design a chat server.
+	In particular, provide details about various backend components, classes
+	and methods. What would be the hardest problems to solve?
+
+8. Othello
+	Othello is played as follows:
+		Each Othello piece is white on one side and black on the other.
+		When a piece is surrounded by its opponents on both the left and
+		right sides (or top and bottom), it is said to be captured, and 
+		flipped to the other side.
+		On your turn, you must capture at least one of your opponents pieces.
+		The games else when a User has no more valid moves.
+		Who ever has the most pieces wins.
+	Implement OOD for Othello
+
+9. Circular Array
+	Implement a CircularArray class that supports an array-like data struct
+	which can be efficiently `rotated`. 
+	If possible, the class should use a generic type (also called a 
+	template), and should support iteration via standard `for i in foo`.
+
+10. Minesweeper
+	Implement a Mine Sweeper game with OOD.
+
+11. File System 
+	Explain the data structs and algorithms that you would use to design an 
+	in-memory file system. Illustrate with code examples where possible.
+
+12. Hash Tables
+	Design and implement a hash table which uses chaining (LinkedList's)
+	to handle collisions.
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 8
+********************************************************************************
+********************************************************************************
+
+"Design an algorithm to compute the nth *BLAH*", might imply recursion.
+
+How to Approach
+	Recursive solutions are built off of solutions to subproblems.
+	
+	Bottom-Up Approach
+		Start with a base case, then build. For example,
+			empty array -> len(a) ==1 --> len(a) ==2 --> ... --> len(a) == n
+	
+	Top-Down Approach
+		First think about how we can divide our problem into subproblems.
+		Be careful of overlap between cases.
+	
+	Half-and-Half Approach
+		Divide the data in half, just cause.
+		For example, binary search and merge sort.
+	
+Recursive vs. Iterative Solutions
+	Recursion can be space inefficient.
+	Each recursive call adds a new layer to the stack, which means it uses
+	O(n) memory for a depth of n.
+
+	Thus, implement a recursive algorithim iteratively.
+	All recursive algorithms can be implemented iteratively although
+	sometimes, the code to do so is much more complex.
+	DISCUSS THIS WITH YOUR INTERVIEWER!
+
+Dynamic Programming & Memoization
+	Dynamic programming is mostly just a matter of taking a recursive
+	algorithm and finding the overlapping subproblems (that is, the 
+	repeated calls).
+	You then cache those results for future recursive calls.
+
+	For example, consider the Fib Sequence and computing the nth iteration.
+	Start with the recursive aspect (Which we know is bad for O time).
+	In Python3, with an i7 processor, `time python3 fib.py`, with this
+	O(2^n) approach will take 22 seconds:
+		Tanners-MacBook-Air:randoms tannerleewoody$ time python3 fib.py 
+		63245986
+		real	0m22.811s
+		user	0m22.647s
+		sys	0m0.065s
+
+	By adding a `memoryD` (aka hash table) param, we can significantly
+	improve this!
+
+		Tanners-MacBook-Air:randoms tannerleewoody$ time python3 fib.py 
+		63245986
+		real	0m0.042s
+		user	0m0.026s
+		sys	0m0.010s
+
+	This memory approach is not always intuitive. 
+	Let us break it down in cases:
+		A: fib(4, []) --> 4 not in `memo`; memo[4] = fib(3, []) + fib(2, [])
+		
+		B: fib(3, []) --> 3 not in `memo`; memo[3] = fib(2, []) + fib(1, [])
+
+		C: fib(2, []) --> 2 not in `memo`; memo[2] = fib(1, []) + fib(0, [])
+		
+		D: fib(1) --> 1
+		E: fib(0) --> 1
+	******************** Back up stack ********************
+		C: return memo[2]
+		B: memo[3] = C + fib(1, [])
+		B: memo[3] = C + D
+		A: memo[4] = B + fib(2, [])
+		A: memo[4] = B + C
+
+
+QUESTIONS:
+
+1. Triple Step
+	A child is running up a staircase with n steps and can hop either 1, 2,
+	or 3 steps at a time.
+	Implement a method to count how many possible ways the child can run 
+	up the stairs.
+
+2. Robot in a Grid
+	A robot is sitting on the upper left corner of a grid with r rows and
+	c columns. The robot can only move right and down. Certain cells are
+	unaccessible. 
+	Design an algorithm to find a path for the robot from the top left 
+	to the bottom right.
+
+3. Magic Index
+	A magic index in an array is such that `A[i] == i`.
+	Given a sorted array of distinct integers, write a method to find a
+	magic index, if one exists, in array A.
+	Follow up:
+		What if the values are not distinct?
+
+4. Power Set
+	Write a method to return all subsets of a set.
+
+5. Recursive Multiply
+	Write a recursive function to multiply two pos. int's w/out using
+	the * operator. You can use addition, subtraction, and bit shifting.
+	But use the minimal number of operations.
+
+6. Tower of Hanoi
+
+
+7. Permutations without Dups
+	Write a method to compute all permutations of a string of unique chars.
+
+8. Permutations with Dups
+	Write a method to compute all permutations of a string whose chars are
+	not necessarily unique.
+	List of permutations should not have duplicates.
+
+9. Parents
+	Implement an algorithm to print all valid and properly opened/closed
+	combinations of n pairs of parentheses.
+	Example:
+		I: 3
+		O: ((())), (()()), ()()()
+
+10. Paint Fill
+	Implement the `paint fill` function that one might see on many
+	image editing programs. Input is 2D array of colors, a point, and a 
+	new color. Output is new array of filled colors.
+
+11. Coins
+	Given an infinite number of quarters, dimes, nickels, and pennies,
+	write code to calculate the number of ways of representing n cents.
+
+12. Eight Queens
+	Write an algorithm to print all ways of arranging 8 queens on an
+	8x8 chess board so that none of them share the same row, col, or
+	diagonal. In this case, 
+
+13. Stack of Boxes
+	With n boxes of widths w, heights h, and depths d: Implement a method
+	to compute the height of the tallest possible stack.
+	The height of the stack is the sum of the heights of each box.
+	The boxes cannot be rotated and can only be stacked on top of one
+	another IFF each box in the stack is strictly larger than the box
+	above it in width, height, and depth.
+
+14. Boolean Evaluations
+	Consider a boolean expression consisting of the symbols 0, 1, &, |, ^, and
+	a desired boolean result value `result. 0 == False and 1 == True.
+	Implement a function to count the number of ways of parenthesizing the 
+	expression such that it evaluates to `result`.
+	Example:
+		countEval( "1^0|0|1", False" ) --> 2
+		countEval( "0&0&0&1^1|0", True ) --> 10
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 9
+********************************************************************************
+********************************************************************************
+
+Intro
+	These are not "tough" algorithmic questions but more sensible
+	every day questions. Can you design the system?
+
+Handling the Questions:
+	1. Communicate
+			Stay engaged. Ask questions. Be open about issues.
+	2. Go Broad First
+			Do not get excessively focused on one part. 
+			Be like water, my friend.
+	3. Use the Whiteboard
+			Draw and illustrate your thoughts.
+	4. Acknowledge Interviewer Concerns
+			Do not brush off interviewer concerns. Validate them.
+	5. Be Careful with Assumptions
+			An incorrect assumption can be a humongous change.
+	6. State your assumptions explicitly
+			When making assumptions, state them.
+	7. Estimate when Necessary
+			Do we have our data stored? How much will it cost to store?
+	8. Drive
+			Stay in the drivers seat.
+
+Design: Step-By-Step
+	Step1: Scope the Problem
+	Step2: Make Reasonable Assumptions
+	Step3: Draw the Magic Components
+	Step4: Identify the Key Issues
+	Step5: Identify the Key Issues
+
+Algorithms that Scale: Step-By-Step
+Step 1:	Ask Questions
+Step 2: Make Believe
+Step 3: Get Real
+Step 4: Solve Problems
+
+Key Concepts
+	Horizontal vs. Vertical Scaling
+
+	Local Balancer
+
+	Database Denormalization and NoSQL
+
+	Database Partitioning (Sharding)
+		Vertical Partitioning
+		Key-Based (or hash-based) Partitioning
+		Directory-Based Partitioning
+
+	Caching
+
+	Asynchronous Processing and Queues
+
+	Networking Metrics
+		Bandwidth
+		Throughput
+		Latency
+		MapReduce
+
+Considerations
+	Failures
+	Available and Reliability
+	Read very vs. write heavy
+	Security
+
+There is no "perfect" system
+
+Questions
+1. Stock Data
+	1,000 client applications are calling your server for end-of-day
+	stock price information (open, close, high, low). You may assume
+	that you already have the data, and you can store it in any format
+	you wish. How would you design the client facing service that 
+	provides the information to client applications?
+	You are responsible for the development, rollout, and ongoing 
+	monitoring and maintenance of the feed.
+	Describe the different methods you considered and why you would 
+	recommend your approach.
+	Your service can use any tech you wish, and you can distribute the
+	information to the client apps in any mechanism.
+
+2. Social Network
+	How would you design the data structures for a very large social 
+	network like FB of Linkedin?
+	Describe how you would design an algorithm to show the shortest
+	path between two people (e.g Me -> Bob -> Susan -> Jason -> You)
+
+3. Web Crawler
+	If you were designing a web crawler, how would you avoid getting 
+	into infinite loops?
+
+4. Duplicate URLs
+	You have 10 billion urls. How do you detect the duplicate documents?
+	In this case, assume 'duplicate' means that the URLs are identical.
+
+5. Cache
+	Consider a web server for a  search engine. This system has 100 
+	machines to respond to search queries, which may then call out to 
+	another cluster of machines to get a result.
+	The machine which responds to a given query is chosen at random, so
+	you cannot guarantee that the same machine will always respond to 
+	the same request.
+	The method `processSearch(String query)` is expensive and required
+	for inner cluster communication.
+	Designe a machine mechanism for the most recent queries.
+	Explain how to update the cache when data changes.
+
+6. Sales Rank
+	An eCommerce company wishes to list the best-selling products, 
+	overall and by category. For example, one product might be the 
+	#1056th best-selling product under "Sports Equipment and the 24th 
+	best-selling product under `Safety`. 
+	Describe how to design this system.
+
+7. Personal Financial Manager
+	Explain how you would design a personal financial manager (like
+	mint.com). This system would connect to your bank accounts, analyze 
+	you're spending habits, and make recommendations.
+
+8. Pastbin
+	Design a system like Pastebin, where a user can enter a piece of 
+	text and get a randomaly generated utl to access it
+
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 10
+********************************************************************************
+********************************************************************************
+
+Intro
+		"Given a very large array of Person objects, 
+		sort the people in increasing order of age."
+	We are given two interesting bits of knowledge here:
+		1. It is a large array, so efficiency is very important
+		2. We are sorting based on ages, so we know the values are in
+			a small range.
+
+	By scanning through the various sorting algorithms, we might notice
+	that bucket sort (or radix sort) would be a perfect candidate for
+	this algorithm. In fact, we can make the buckets small (just 1 year
+	each) and get O(n) running time.
+
+Common Sorting Algorithms
+	Name				|	RunTime		|	Memory
+	Bubble Sort		|	O(n^2)		|	O(1)
+	Selection Sort	|	O(n^2)		|	O(1)
+	Merge Sort		|	O(n logn)	|	Depends
+	Quick Sort		|	O(n logn)	|	O(logn)
+	Radix Sort		|	O(kn)			|	???
+
+Searching Algorithms
+	Sorted Arrays:
+		Binary Search
+		Jump Search
+		Interpolation Search
+		Exponential Search
+			Extends binary search
+		Fibonacci Search
+			Jump at fib. intervals
+		Ubiquitous Binary Search
+	Unsorted Arrays:
+		???
+	Regular Expressions:
+		https://swtch.com/~rsc/regexp/regexp1.html
+	Lists in List:
+		Sublist Search	|	O(m*n)
+			"Is one list contained in the other list?"
+
+	Binary Search
+		Start with finding bound in the middle.
+		Set middle as a lower and higher bound, and find next middle.
+	Jump Search -- O(sqrrt(n)) -- O(1)
+		Iterate through array at an index rate of sqrrt(size(Arr))
+	Interpolation Search
+		Sorted array of uniformly distributed values.
+		Linear search using a probe position formula
+	Exponential Search
+
+
+Questions
+1. Sorted Merge
+	You are given two sorted arrays, A and B.
+	A has a large enough bugger to hold B.
+	Merge A into B.
+
+2. Group Anagrams
+	Write a method to sort an array of strings such that all
+	anagrams are next to each other.
+
+3. Search in Rotated Array
+
+
+4. Sorted Search, No Size
+
+
+5. Sparse Search
+
+
+6. Sort Big File
+	20GB file w/ one string per line. How to sort?
+
+
+7. Missing Int
+	
+
+
+8. Find Duplicates
+
+
+
+9. Sorted Matrix Search
+
+
+
+10. Rank from Stream
+
+
+
+11. Peaks and Valleys
+
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 11
+********************************************************************************
+********************************************************************************
+
+Intro
+
+What Interviewer is Looking For:
+	Not just an extensive list of test cases.
+	Capture the Big Picture
+		What is the software really about?
+			Payments, shipments, stock, queues
+	Knowing How the Pieces Fit Together
+		Do you understand how software works?
+		Do you understand how software fits int to the ecosystem?
+	Organization
+		Is there a structure to the plan?
+		WHAT is the structure to the plan?
+		Make a structured approach to the different components of 
+		the software in question.
+	Practicality
+		Reinstalling software is not practical.
+		Rebooting the browser is not practival.
+		But clicking a button to do the process for `rebooting`
+		on the server (or just fixed...).
+	
+Test a Real World Object
+	Step 1: Who will use it and why?
+	Step 2: What are the use cases?
+	Step 3: What are the bounds of use?
+		Temperature, number of items, usage rate, commercial,
+		industrial, ...
+	Step 4: What are the stress/failure conditions?
+		When is failure acceptable? What does failure mean?
+		Is there an acceptable number of bad products?
+	Step 5: How would you perform testing?
+		Use cases defined as measured act, in order to scope 
+		life expectancy of product.
+	
+Testing Software
+	Step 1: Black or White Box Testing? Or both?
+	Step 2: Who will use it and why?
+	Step 3: What are the use cases?
+		This is a converstaion to have with the intervierwer.
+	Step 4: What are the bounds of use?
+		Think on how the use cases will add new items to different 
+		features, and think about how false positives/negatives.
+	Step 5: What are the stress/failure conditions?
+		What does failure look like, and what process gets user 
+		out of failure? Error responses? Error handling?
+	Step 6: What are the test cases? How to perform tests?
+		Null and failure first. Then single instance. Then
+		complex testing.
+
+Testing a Functions:
+	Step 1: Define a test case
+		Null and Failure input tests. 
+		Normal and extreme usage tests. 
+		Strange vs clean input tests
+	Step 2: Define the expected result
+		Errors, correct output, and data handling.
+	Step 3: Write test code
+		Use asserts and naming conventions
+
+Troubleshooting Questions:
+	Step 1: Understand the Scenario
+		How long ahs the user been experiencing this issue?
+		Versions of contained software (jquery, ie, OS)
+	Step 2: Break Down the Problem
+		Create a flow chart of the issue for a use case.
+	Step 3: Create Specific Manageable Tests
+
+
+Questions
+1. Mistake
+		```
+			unsigned int i;
+			for (i=100; i>=0; i--)
+				printf("%d\n", i);
+		```
+	What is the mistake?
+
+2. Random crashes
+	A single threaded, C standard lib application is crashing, but
+	crashing in different places. What programming errors could be 
+	causing this crash? How would you tests each one?
+
+3. Chess Tests
+	Given a Piece class and a function `canMoveTo(int x, int y)`, we
+	are able to find if a chess piece can move to a spot on the board
+	or not. How can we test this method?
+
+4. No Tests Tools
+	How would you load test a webpage w/out using any test tools?
+
+5. Test a Pen -- How would you test a pen?
+
+6. Test an ATM -- Show how to test an ATM in a distributed banking system?
+
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 12
+********************************************************************************
+********************************************************************************
+
+TODO:
+	List different nuances and history aspects of python.
+	List details about Flask, Django, elasticsearch, cucumber/pickle/celery,
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 13
+********************************************************************************
+********************************************************************************
+
+Javascript
+
+CSS
+
+HTML
+
+Servers
+	Get, Post, 
+
+Ajax
+	Get, Post, 
+
+Json, XML
+
+API's
+
+D3, Bootstrap, Mobile First
+
+Raspberry Pi's, circuir boards(micro conductors), Arduinos
+
+Android and Apple Development
+
+Java and C development
+
+Vim, EMACS, and IDE's
+
+Unix, Linux, and Windows
+	Bash, powershell, putty, cmd
+
+Git, SVN, and version control
+	Branching, merging, blobs, pulling, forking
+
+
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 14
+********************************************************************************
+********************************************************************************
+
+Intro:
+	If you express knowledge in DB's, expect questions on them.
+
+SQL: Syntax and Variations
+	sql questions can range from very humbling keyword usage to
+	very simple select questions.
+
+	Explicit vs Implicit Joins:
+		```
+			SELECT * FROM Foo INNER JOIN Bar on Foo.id = Bar.id
+			SELECT * FROM Foo JOIN Bar WHERE Foo.id = Bar.id
+		```
+		Do not omitt the join. Just because something looks a little easier,
+		it can easily omit some reliability and readability.
+		For example, is it a cross join, outter join, right join?
+	
+	Denomalized vs. Normalized DB's
+		Normalized are meant to reduced redundancy.
+			Foreign keys are typically used between tables.
+			Expensive joins are then present.
+		Denormalized are meant to optimize read time.
+			Offers highly scalable system w/ redudnant, EZ to acceess data.
+
+	SQL statements:
+		Inner vs. Cross vs. Right vs. Left
+			
+		... FROM ( SELECT ... WHERE)
+			Example of selecting from a subquery.
+			A Subquery is an sql query nested in a larger query.
+		GROUP BY
+			Group aggregate functions by a column/field.
+		INTEGER PRIMARY KEY
+			How most tables are with `id`.
+	
+	Keys
+		Super
+			A set of one or more key(s) that can be used to identify a record 
+			uniquely in a table.
+			Examples: Primary, Alternate, and Unique
+		Candidate
+			A set of or or more fields/columns that can identify a record 
+			uniquely in a table.
+			Example, coursecode.
+		Primary
+			A set of one or more fields/column of a table that uniquely identify
+			a record in a DB table.
+			Cannot accept null nor duplicate values.
+			Only one candidate key can be a primary key.
+		Alternate
+			A candidate key that is not a primary key.
+		Composite/Compound
+			A combo of more than one fields/column which can be a cadidate or
+			primary key.
+		Unique
+			A set of one or more fields/column that uniquely identify a record
+			in a DB table.
+			This is a primary key that can have Null, but still no duplicates.
+		Foreign
+			A fieldthat is a primary key for another table.
+			Might have multiple instances of Foreign keys depending on 
+			relationship.
+
+Design your Database: Samll
+	Step 1: Handle Ambiguity
+	Step 2: Define the Core Objects
+		OOD approach where tablename is Class and fields are Properties.
+		Always have Keys.
+	Step 3: Analyze Relationships
+		1to1, 1toM, MtoM?
+	Step 4: Investigate Actions
+		`KISS List` --> List shared, List completed, Dates changed. ...
+
+Design your Database: Large
+	Joins are slow. Be sure to denormalize your data. 
+
+
+Questions:
+1. Multiple Apartments
+	Write query to get a list of tenants who are renting more than one
+	apartment.
+
+2. Open Requests
+	Write query to get a list of all buildings and the number of open 
+	requests (Requests in which status equals `Open`).
+
+3. Close All Requests
+	Write a query to SET all `open`s to `closed` where buildingNumber == 11
+
+4. Joins
+	What are the different types of joins? Explain them with situational
+	dependencies.
+
+5. What is denormalization? Pros and cons?
+
+6. Entity Relationship Diagram
+	Draw an entity relationship diagram for a DB w/ companies, people, and
+	professionals (ppl who work for companies).
+
+7. Design Grade DB
+	Write a DB for students grades. Write a query to get a lit of honor roll
+	students (top 10%), sorted by their grade point average.
+
+
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 15
+********************************************************************************
+********************************************************************************
+
+Threads in Java
+	A "main" thread is created at execution time to run main().
+	This thread is a unique object of the `java.lang.Thread` class.
+	In java, a thread can be implemented in one of two ways:
+		1. Implementing the java.lang.Runnable interface
+		2. Extending the java.lang.Thread Class
+
+Implementing the Runnable Interface in Java
+	To create and use a thread using this interface, we do the following:
+		1. Create a class that `implements` Runnable interface.
+				An object of this class is a Runnable object.
+		2. Create an object of type Thread by passing a Runnable object
+			as an argument to the Thread constructor.
+			The thread obj now has a Runnable obj that implements the run() method.
+		3. The start() method is invoked on the Thread obj created in the prev step.
+
+Extending the Thread Class
+	Alternatively, we can create a thread by extending the Thread class.
+	This means that wiill override the run() method, and the sublcass may also call
+	the thread constructor explicitly in its constructor.
+
+Extending vs. Implementing
+	Java does not support multiple inheritances. Therefore, extending the Thread
+	class means that the subclass cannot extend any other class.
+		A class implementing the Runnable interface will be able to extend another
+		class.
+	A class might only be interested in being runnable, and therefore, inheriting
+	the full overhead of the Thread class would be excessive.
+
+
+Synchronization and Locks in Java
+	Threads within a given process share the same memory space, which is both a 
+	positive and a negative.
+	It enables threads to share data, which can be valuable. However, it also creates
+	the opportunity for issues when two threads modify a resource at the same time.
+	Java provides synchronization in order to control access to shared resources.
+
+	The keyword `synchronized` and the `lock` form the basis for implemnenting
+	synchronized execution of code.
+
+	Synchronized Methods
+		most commonly, we restrict access to shared resources through the use of
+		the synchronized keyword. It can be applied to methods and code block, and
+		restricts multiple threads from executing the code simultaneously on the 
+		same obj.
+	Synchronized Blocks
+
+	Locks
+
+Deadlocks and Deadlock Prevention
+	
+
+Questions
+1. Thread vs. Process
+	What is the difference between a thread and a process?
+
+2. Context Switch
+	How would you measure the time spent in a context switch?
+
+3. Dining Philosophers
+	Many philosophers are dining at a circular table.
+	There exists one left chopstick and one right chopstick.
+	A philosopher needs both chopsticks to eat.
+	A philosopher always picks up the left chopstick before the right one.
+	If all philosophers reached for the left chopstick at the same time, we would
+	have a deadlock.
+	Using threads and locks, implement a simulation of the dining philosophers 
+	problem that prevents deadlocks.
+
+4. Deadlock-Free Class
+	Design a class which provides a lock only if there are no possible deadlocks.
+
+5. Call in Order
+	Suppose we have the following code:
+		```
+			public class Foo{
+				public Foo(){ ... }
+				public void first(){ ... }
+				public void second(){ ... }
+				public void third(){ ... }
+			}
+		```
+	The same instance of Foo will be passed to three different threads.
+	threadA will call Foo.first()
+	threadB will call Foo.second()
+	threadC will call Foo.third()
+	Design a mechanism to ensure that first is called before second, and second
+	is called before third.
+
+6. Synchronized Methods
+	Given a class with synchronized method A and a normal method B, find if two
+	threads can execute A at the same time. 
+	Find if the threads can execute A and B at the same time.
+
+7. FizzBuzz
+	Print the numbers from 1 to n.
+	If the number is divisble by 3, print 'Fizz' instead.
+	If the number is divisble by 5, print 'Buzz' instead.
+	If the number is divisble by 3 and 5, print 'FizzBuzz' instead.
+	Do this with 4 threads running.
+	3 threads check for a specific divisibility.
+	1 thread retrieves the numbers.
+
+
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 16
+********************************************************************************
+********************************************************************************
+
+Questions
+
+1. Number Swapper
+	Write a function to swap a number in place (that is, with temp vars.).
+
+2. Word Frequencies
+	Design a method to find the frequency of occurrences of any given word 
+	in a book. What if we were running this algorithm multiple times?
+
+3. Interaction
+	Given two straight line segments (represented as a start point and and 
+	end point), compute the point of intersections, if any.
+
+4. Tic Tac Win
+	Design an algorithm to figure out if someone has won a game of tic-tac-toe.
+
+5. Factorial Zeroes:
+	Write an algorithm which computes the number of trailing zeros 
+	in `n` factorial.
+
+6. Smallest Difference
+	Given 2 arrays of integers, compute the pair of values (one value in each
+	array) with the smalled (non-negative) difference.
+	Return the difference.
+	Example:
+		I: {1,3,15,11,2}, {23,127,235,19,8}
+		O: 3 --> From 11 and 8
+
+7. Number MAx:
+	Write a method that finds  the max of 2 numbers.
+	You should not use if-else or any comparison operators.
+
+8. English Int
+	Given any int, print and English phrase that describes the int.
+	For example: "One Thousand, Two Hundered Thirty Four"
+
+9. Operations
+	Write methods to implement the multiply subtract, and divide operations.
+	Focus on integer input and integer output only.
+
+10. Living People
+	Given a list of ppl with their birth and death years, implement a method
+	to compute the year with the most number of people alive.
+	You may assume that all ppl were borne between 1900 & 2000.
+	If a person was alive during any portion of that year, they should be
+	inlcuded in that years count.
+	For example:
+		Person(birth=1908, death=1909 is inlcuded in the counts for both 
+		1908 and 1909
+
+11. Diving Board
+	Given a bunch of planks, design a diving board by placing the planks
+	end-to-end. There are two tyupes of palnsk, one of length `shorter` and 
+	one of length `longer`. You must use exactly K planks of wood.
+	Write a method to generate all possible lengths for the diving board.
+
+12. XML Encoding
+	Since XML is very verbose, you are given a way of encoding it where each 
+	tage gets mapped to a pre-defined integer value.
+	The language/grammar is as follows:
+		Element       --> Tag Attributes END Children End
+		Attribute     --> Tag Value
+		END           --> 0
+		Tag           --> some predefined mapping to int
+		Value         --> string value
+	For example, take following XML:
+		<family lastname="McDowell" state="CA">
+			<person firstname="Gayle">Some Message</person>
+		</family>
+	We would have the following returned:
+		1 4 McDowell 5 CA 0 2 3 Gayle 0 Some Message 0 0
+	Write code to print the encoded version of an XML element
+
+13. Bisect Squares
+	Given two squares on a 2-dimensional palne, find a line that would 
+	cut these two squares in half. Assume that the top and bottom sides 
+	of the square run parallel to the x-axis.
+
+14. Best Line
+	Given a two dimensional graph, with points on it, find a line which 
+	passes the most number of points.
+
+15. Master Mind
+	The game of Master Mind is played as follows:
+		1. The computer has 4 slots.
+		2. Each computer slot contains a ball.
+		3. A ball is Red, Yellow, Green, or Blue
+		4. The user needs to guess the solution of colors.
+		5. The user is returned a `1` if correct guess.
+		6. If the user guesses a correct color, but wrong slot, a `2` is ret.
+		7. If the user guesses an incorrect color, `0` is returned.
+	Design the game and write a program to solve it.
+
+16. Sub Sort
+	Given an  array of integers, write a method to find indices m and n
+	such that if you sorted elements m through n, the entire array would
+	be sorted. Minimize n -m to find the smallest such sequence.
+	Example:
+		I: 1, 2, 3, 4, 10, 11, 7, 12, 6, 7, 16, 18, 19
+		O: (3,9) --> 4, 10, 11, 7, 12, 6, 7
+
+17. Contiguous Sequence
+	You are given an array of ints (positive and engative).
+	Find the contiguous sequence with teh largest sum.
+	Return the Sum:
+	Example:
+		I: 2, -8, 3, -2, 4, -10
+		O: 5 --> {3, -2, 4}
+
+18. Pattern Matching
+	You are given 2 strings: `pattern` and `values`.
+	`pattern` consists of just hte letters `a` and `b`, such that `a` and `b`
+	represent a specific pattern to themselves.
+	For example:
+		"catcatgocatgogo" == "aababb"
+	Write a method to determine if `values` is somehow equivalent to `pattern`.
+
+19. Pond Sizes
+	Given an int matrix represening a plot of land, such that the value at 
+	mXn is the height above sea level for that plot.
+	A value of zero indicates water.
+	A pond is an area of water connected:
+		1. vertically, 
+		2. horizontally, or 
+		3. diagonally
+	The Size of the pond is the total number of connected water cells.
+	Write a method to compute the sizes of all ponds in the matrix.
+
+20. T9
+	On original cell phones, users typed on a numberic keypad and the phone
+	would provide a list of words that matched thses numbers.
+	Each digit mapped to a set of 0-4 letters.
+	A dictionary is provided for allowed words.
+	The mapping is as follows:
+		1: [SPECIAL CHARACTERS] --> Comma, period, apostrophe.
+		2: [a,b,c]
+		3: [d,e,f]
+		4: [g,h,i]
+		5: [j,k,l]
+		6: [m,n,o]
+		7: [p,q,r,s]
+		8: [t,u,v]
+		9: [w,x,y,z]
+		0: []
+	Implement an algorithm to return a lsit of matching words, give a sequence.
+
+21. Sum Swap
+	Given 2 arrays of ints, find a pair of values such that swapping them
+	would make the arrays equal one another.
+	Example:
+		I:	[4,1,2,1,1,2], [3,6,3,3]
+		O: [1,3]
+
+22. Langton's Ant
+	An ant is sitting on an infinite grid of white and black squares.
+	It traverses the squares as such:
+		1. Initially facing right
+		2. W square:
+				flip the color of the square, turn 90 deg. clockwise,
+				and move forward 1 unit.
+		3. B squlare:
+				Flip the color of the square, turn 90 deg. counter clockwise,
+				and more forward 1 unit.
+	Write a program to simulate the first K moves that the ant makes 
+	and print the final board as a grid.
+	Note that you are not provided with teh data struct to represent the grid.
+	The only input to your method is K.
+	You should print the final grid and return nothing.
+	The Method signature might be soemthign like `printKMoves(int K)`.
+
+23. Rand7 from Rand5
+	Given a method that generate a random number between 0 and 4, write a 
+	method to generate a random number between 0 and 6.
+
+24. Pairs with Sum
+	Design an algorith to find all pairs of ints in an array such that the 
+	pair of ints sums to a specific value.
+
+25. LRU Cache
+	Design and build a 'least recently used' cache.
+	The cache evicts the least recently used item.
+	The cache should map from keys to values and be init'ed w/ a max size.
+	When the cache is full, it should evict the least recently used item.
+
+26. Caclulator
+	Given an arithemetic equation consisting of:
+		1. positive integers
+		2. Addition
+		3. Subtraction
+		4. Multiplication
+		5. Division
+	, compute the result.
+	Example:
+		I: "2*3+5/6*3+15"
+		--> "6 + 5/6*3 + 15" --> "6 + 0.333*3 + 15" --> "6 + 2.5 + 15" 
+		--> "23.5"
+		O: 23.5
+
+
+
+********************************************************************************
+********************************************************************************
+                               CHAPTER 17
+********************************************************************************
+********************************************************************************
+
+Questions:
+
+1. Add Without Plus
+	Create a funtion that adds without using any operators.
+
+2. Shuffle
+	Shuffle a deck of cards via a `shuffle()` method.
+	Each of the 52! permutations must be possible.
+
+3. Random SEt
+	Write a method to randomly generate a set of m integers from an array of
+	size n. Each element must have equally probs of being chosen.
+
+4. Missing Number
+	An array A contains all the ints from 0 to n, except for one number.
+	Numbers are stored as binary arrays.
+	We cannot access the whole number, just single bits.
+	Find the missing number as efficiently as possible.
+
+5. Letters and Numbers
+	Given an array filled with letters and numbers, find the longest subarray
+	with an equal number of letters and numbers.
+
+6. Count of 2s
+	Write a method to count the number of 2s that appear in all the numbers
+	between 0 and n (inclusively).
+	Example:
+		I: 25
+		O: 9 --> 2, 12, 20, 21, 22, 23, 24, 25  --> Note 22 counts twice.
+
+7. Baby Names
+	Given a list of common baby names, design an algorithm to join synonymous
+	names together, with combined frequncies. For example, [Jon, Jonny, John]
+	should all be under a single instance.
+
+8. Circus Tower
+	Given a circus routine such that people stand on one another's shoulders,
+	design an algorithm to find the maximum height of the tower with an 
+	array of performers (with height, and weight properties). The only
+	requirement for the tower is that the person on someone's shoulders
+	must be both shorter and lighter than the person before them.
+
+9. Kth Multiple
+	Design an algorithm to find the kth number such that the only prime
+	factors are 3, 5, and 7. Note that 3, 5, and 7 do not have to be 
+	factors, but it should not have nay other prime factors.
+	For example, the first several multiples would be (in order):
+		1, 3, 4, 5, 7, 9, 15, 21
+
+10. Majority Element
+	A majority element is an element that makes up more than half of the item
+	in an array. Given a positive integers array, find the majority eleemnt.
+	If there is no majority element, return -1.
+	Do this in O(N) tiem and O(1) space.
+	Example:
+		I: 1 2 5 9 5 9 5 5 5
+		O: 5
+
+11. Word Distance
+	Givena large text file containing words. Given any two words, find the
+	shortest distance (in terms of number of words) between them in the file.
+	If the operation will be repeated many times for the same file, what
+	optimizations can be made?
+
+12. BiNode
+	Consider a Node class that's purpose is to point to other Nodes.
+	BiNode could be used to represent both a bin tree (when node1 is the
+	lest node, and node2 is the right node) or a doubly linked list (node1
+	is the previous and node2 is next).
+	Implement a method to convert a binary search tree using BiNode into
+	a doubly linked list.
+	The values should be kept in order and the operations should be 
+	performed in place.
+
+13. Re-Space
+	Given a document full of valid words such that the document has no
+	spaces, no punctuation, and no capital letters, design an approach
+	to simply first reinsert the spaces to make this doc readable.
+	Note that some words are not validated.
+	Example:
+		I: jesslookedjustliketimherbrother
+		O: jess looked just like tim her brother
+	--`jess` and `tim` were not recgonized in our dictionary.
+
+14. Smallest K
+	Design an algorithm to find the smalled K numbers in an array.
+
+15. Longest Word
+	Given a list of words, write a program to find the longest word made 
+	of other words in the list.
+	Example:
+		I: cat, banana, dog, nana, walk, dogwalker
+		O: dogwalker
+
+16. The Masseuse
+	A popular masseuse receives a sequence of back-to-back appointment
+	requests and is debating which ones to accept. 
+	She needs a 15-minute break between appointments and therefore
+	she cannot accept any adjacaent requests.
+	Given a sequence of back-to-back appointment requests, find the
+	optimal set the masseuse can honer.
+	Return the minutes.
+	Note optimal means highest total booked minutes.
+	Note all requests are mutiples of 15, non overlapping, and immovable.
+	Example:
+		I: [30, 15, 60, 75, 45, 15, 15, 45]
+		O: 180 minutes --> [30, 60, 45, 45]
+
+17. Multi Search
+	Given a string b and an array of smaller strings T, design a method
+	to search b for each small string in T.
+
+18. Shortest Suersequence
+	Given two arrays, one shorter and one longer, find the shortest sub-
+	array in the longer array that contains all the elements in the shorter.
+	The items can appear in any order; Array S contains distinct elements.
+
+19. Missing Two
+	You are given an array with all the numbers from 1 to N, appearing
+	exactly once, except for on number that is missing.
+	How can you find the missing number in O(N) time and O(1) space?
+	What if there were two numbers missing?
+
+20. Continuous Median
+	Numbers are randomly generated and passed to a method.
+	Write a program to find and maintain the median values as new values
+	are generated. 
+
+21. Volume of Histogram
+	Design an algorithm to compute the volume of water a histogram display
+	box could hold given that each histogram bar has width 1.
+	The display box does not have a fixed height.
+	We are pouring water in between the bars of the histogram.
+
+22. Word Transformer
+	Given two words of equal length that are in a dictionary, write a method
+	to transform one word into another word by changing only one letter at
+	a time.
+	The new word you get in each step must be in teh dictionary.
+	Example:
+		I: DAMP, LIKE
+		O: DAMP --> LAMP --> LIMP --> LIME --> LIKE
+
+23. Max Black Square
+	Given a square matrix, where each cell is black or white, find the max
+	subsquare such that all four borders are filled black.
+
+24. Max Submatrix
+	Given an NxN matrix of positive and negative ints, find the submatrix
+	with the largest possible sum.
+
+25. Word Rectable
+	Given a list of millions of words, find the largest possible rectangle
+	of letters such that every row forms a word (reading left to right
+	and every column forms a word (reading top to bottom).
+	The words need not be chosen consecutively from the list, but all rows
+	must be the same length, and all columns msut be the same height.
+
+26. Sparse Similarity
+	Suppose that we have two documents, containing distinct integers.
+	Upon finding the similar elements (the intersection), and the union
+	(all elements together, but distinct), a similarity score can be 
+	generated by dividing the size of the intersection by the size of the
+	union.
+
+	A similarity score is said to be `sparse` if any two arbitratily 
+	selected documents are very likely to have similarity zero.
+	Design an algorithm that returns a list of paris of document IDs and
+	the associated similarity.
+	Print only the pairs with similarity greater than zero.
+	Empty documents are not printed.
+	The union does not count intersecting elements twice.
+	Example:
+		I:	[1,2,3,4], [1,2,5,6]
+		O: 0.33 --> 1/3 --> 2/6 --> len([1,2])/ len([1,2,3,4,5,6])
+
+
+
+********************************************************************************
+********************************************************************************
+                               Glossary
+********************************************************************************
+********************************************************************************
+Items to cover are in here:
+
+********************** SYMBOLS **********************
+^
+	Bit Wise XOR
+|
+	Bit wise OR
+~
+	Bit Wise Negate
+<<
+	Pop from head, and place popped item at tail.
+>>
+	Pop from Tail, and place popped item at head.
+*
+	Multiplication
++
+	Addition
+-
+	Subtraction; Think solving for x and addition...
+OR
+	Logical OR statements as seen in code.
+AND
+	Think "TRUE AND FALSE", "TRUE AND TRUE", "FALSE AND FALSE"
+NOT
+	Flip everything to the opposite
+XOR
+	FALSE AND FALSE --> FALSE
+	TRUE AND TRUE   --> FALSE
+	TRUE AND FALSE  --> TRUE
+
+************************* A *************************
+Angles
+	Note what it means to rotate by 90deg
+	Not what it means to rotate by radians...
+
+Amoritized
+	To gradually write off
+	See: Zenos Paradox
+
+Arc
+	If a node is a vertex, then the arc is the edge FOR DIRECTED GRAPH;
+
+Arrays
+
+AVL Tree
+
+************************* B *************************
+Bit Manipulation
+
+Bit Operator
+
+Bit Vectors
+
+BCR
+	Best Conceivable Runtime
+	There may not be an algorithm, but this runtime 
+	should be conceived and disproven either way.
+
+BFS
+	Breadth First Search;
+	Store queue of nodes to process search;
+
+Big O
+
+Big Omega
+	Lower bound of the run time for a given function/process;
+	For example, we want to find to find the height of our neighbor, Brian.
+		We know our neighbor Alex is 5'10 and neighbor Charlie is 6'2.
+		Brian is taller than Alex but shorter than Charlie.
+		We can say Brian is Big-Omega(Alex).
+
+Big Theta
+	Tight bound of the run time for a given function/process;
+	For example, we want to find to find the height of our neighbor, Brian.
+		And even though we have different neighbors, Alex and Charlie, whose 
+		height we already know, we use scientific methods and tools to find 
+		Brian's height instead. In this case, a tape measurer.
+	For example, we have a function that runs the following in it's code:
+			1. Check if 'a' in a sentence,
+			2. Check if 'b' follows 'a'.
+		This would in turn run (1) the length of the input, n.
+		This would in turn run (2) +1 on n.
+		This implies our runtime is `n+1`. Let us define this as a function:
+			f(n) = n+1  <-- Neighbor Brian
+		In our neighbor case, we know this runs between `Alex` of `n` and 
+		`Charlie` which is `2n`.
+		We can then make this tight bound by comparing Alex and Brian.
+		This comparison spans n as n approachs inifinity":
+			Lim(n) = Lim(n + 1) --> Lim(n/n) = Lim(n/n + 1/n)
+			--> 1 + 1/INF --> 1+0 --> 1
+		We can even generalize this to be Big-Theta(f(n)) is true for all
+		versions of cn, which implies f(n) runs in O(n).
+
+
+Binary Search
+
+BOD Rates
+
+Browser
+
+************************* C *************************
+Cache
+	Data store for quick access;
+	Can be queue, stack, or hardware component.
+	Usually `tag` `data` format;
+
+Ceiling
+
+Circular Linked List
+	Linked List that sets a sentinal `head` node that references itself.
+	This style avoids None checks, but requires storage of the sentinel `head`
+		node.
+	Useful for an ongoing process such as who's turn it is during a board game.
+	Useful for rewriting data that does not need to be stored, indefintely.
+		Think of a video/sound buffer and only storing so much to avoid laggy 
+			playback
+		The buffer continunes writing in a circle over already watched/listend
+			content.
+Collisions
+
+Complement
+	Bitwise Tilda (~) operator.
+
+Compression
+
+************************* D *************************
+Database
+	Piece of software that runs on a computer
+
+Database Runtime
+	Limited to hardware.
+	To enhance runtime:
+		1. Query alteration to avoid joins and aggregates
+		2. Reduce table size (think `course` table w/ Leepfrog)
+
+Deterministic Finite Automata
+	AKA DFA, Finite Automata
+	See Finite Automata
+
+Directed Graph
+	A graph such that the points follow a path and are directional;
+
+Divide and Conquer
+
+Doubly Linked List
+
+Dynamic
+	Solving such that code does not need to change
+
+************************* E *************************
+Edge
+	For an undirected graph, the edge connects two nodes;
+
+
+************************* F *************************
+Finite
+
+Finite Automata
+	A simple idealized machine used to recognize pattersn within
+	input taken from some character set or alphabet.
+	The job of an FA is to accept or reject an input depending on
+	whether the pattern defined by the FA occurrs in the input.
+	Consists of:
+		A finite set S of N states
+		A special start state
+		A set of final states
+		A set of transitions from one state to another, labeled
+			Labeling from our char/alphabet set.
+	We can represent an FA graphically, with node for staes, and 
+	arcs for transitions.
+	We execute our FA  
+
+Floor
+	Round down to the nearest integer;
+	Floor
+		Round down to the nearest integer;
+		`//` operator in Python`//` operator in Python
+
+
+************************* G *************************
+Gauss Summation
+	n + n-1 + n-2 + ... + 2 + 1
+	--> n(1-n)/2 --> (n-n^2)/2
+
+Grok
+	To fully enbody 
+
+************************* H *************************
+Hash Table
+	Dictionary in python...
+
+Hashing
+
+
+************************* I *************************
+Immutable
+	Cannot be changed after created
+
+"In place"
+
+************************* J *************************
+
+************************* K *************************
+
+************************* L *************************
+Leaf 
+
+Linked Lists
+	Data structure that represents a sequence of
+		nodes;
+	Singly and Doubly:
+		Next node vs next&previous node pointers;
+	Does not provide constant time access to index;
+	Does provide constant time access to head addition
+		and removal;
+	See Doubly Linked List and Circular Linked List
+
+Linux
+
+List
+
+Limits
+	Needed to know for "summation to function" transposition
+
+Linear Algebra
+
+************************* M *************************
+Matrix
+
+Modular Groups
+	
+
+Modulo Operation
+	Returns the remainder after dividing one number by another.
+	`%` operator in Python;
+	For example:
+		44%2 == 0
+		55%2 == 1
+
+Most Significant Bit
+	See Significant Bit
+
+Mutable
+	Can be changed after created
+
+************************* N *************************
+Negative Infinity
+	When we take the limit down and not up :p
+
+Nondeterministic Automata
+	If a unique next state (as specified by the transitions)
+	does not exist for a pair of states and possible input
+	characters, then it is said to be nondeterministic.
+	An NDFA can follow many paths simultansously.
+	If any series of valid transitions reaches an accepting 
+	state, then we say the FA accepts the input.
+	It is as if we allow the FA to 'guess' which of several 
+	tranitions to take from a given state, and the FA always
+	guesses right.
+	...
+
+************************* O *************************
+
+************************* P *************************
+Palindrome
+
+Parallelism
+
+Permutation
+
+Prime Numbers
+
+************************* Q *************************
+Queues
+	A stack of data purposed around FIFO
+	Think append(), remove(), peek(), isEmpty()
+	Essentially a Linked List...
+	Used in BFS and cache
+	
+************************* R *************************
+Radians
+
+Refractor
+
+Relatively Prime Numbers
+
+Resizable Arrays
+
+Router
+
+RSA Encryption
+
+************************* S *************************
+Signed Zero
+	With binary representation of numbers, and IEEE standard,
+	we now have 1000 == -0
+	Helpful in rounding from negative numbers.
+		With celsius, it is important to know if it is 
+		freezing or not freezing (freezing is zero).
+
+Significant Bit
+	AKA: Most Significat Bit (MSB), Sign Bit, Left-Most Bit
+	The bit that typically tells us the sign.
+
+SQL
+	Databse language;
+	Opeartes in ______ time.
+
+Stack
+	A stack of data purposejdj around LIFO;
+	Think pop(), push(), peek(), isEmpty()
+	Essentially a Linked List...
+
+StringBuilder
+	Java 7 specific class
+	Used to work with long strings and avoid slowing
+	down runtime.
+	No real python equivalent.
+
+************************* T *************************
+Tree
+	A graph data structure that is composed of nodes
+	Consists of root node.
+	The root node has zero or more child nodes
+	Each child node has zero or more child nodes, and so on.
+	The tree cannot contain cycles.
+
+Types
+	List, hashmap, array, string, int, double, float, ...
+
+Typesetting
+
+************************* U *************************
+Undirected Graph
+
+Unix
+
+
+************************* V *************************
+Vectors
+
+************************* W *************************
+
+************************* X *************************
+
+************************* Y *************************
+
+************************* Z *************************
+Zenos Paradox
+	sum += (1/2^i) for i in range(0,n)
+	Taking the limit after some math tricks gives us 1.
+	Used to argue cost of resizable arrays.

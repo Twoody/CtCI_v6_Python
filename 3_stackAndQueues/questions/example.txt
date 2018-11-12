@@ -27,7 +27,7 @@
 		Implement a function popAt(int index) which performas a pop 
 		operation on a specific sub-stack.
 
-	Hings:
+	Hingt:
 		64, 81
 
 4. Queue via Stacks
