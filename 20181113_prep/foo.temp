@@ -1,0 +1,32 @@
+	def swap(self, n1, n2):
+		#Swap node1 and node2
+		print(n1.details())
+		print(n2.details())
+		t1 = Node(n1.value, n1.parent, n1.right, n1.left)
+		t2 = Node(n2.value, n2.parent, n2.right, n2.left)
+
+		if n1.right:
+			n1.right.parent = t2
+		if n1.left:
+			n1.left.parent = t2
+		if n2.right:
+			n2.right.parent = t1
+		if n2.left:
+			n2.left.parent = t2
+		if n1 is self.head:
+			self.head = t2
+		if n2 is self.head:
+			self.head = t1
+		if n1 is self.tail:
+			self.tail = t2
+		if n2 is self.tail:
+			self.tail = t1
+
+		n1 = t2
+		n2 = t1
+
+		print(n1.details())
+		print(n2.details())
+		print()
+		return True
+
