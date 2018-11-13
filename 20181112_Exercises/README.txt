@@ -4,7 +4,7 @@ Days before interview:
 Plans for today:
 	Starting time: 					1030
 	Google Interview prep time:	1330
-	Weedmaps Interview Time			1515
+	Other Interview Time			1515
 
 Other obligations:
 	Young Company and import system
