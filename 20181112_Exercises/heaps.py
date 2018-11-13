@@ -18,6 +18,12 @@ class Node:
 		self.left   = left
 	def __str__(self):
 		return str(self.value)
+	def details(self):
+		ret = str(self.value) +':\n'
+		ret += '\tparent:\t'    + str(self.parent) +'\n'
+		ret += '\tleft:\t'      + str(self.left) +'\n'
+		ret += '\tright:\t'     + str(self.right) +'\n'
+		return ret
 class Heap:
 	def __init__(self, values=None):
 		self.head = None
@@ -69,7 +75,6 @@ class Heap:
 			self.head = Node(value)
 			self.tail = self.head
 			return self.tail
-		print(self.toArr())
 		t = self.tail
 		n = Node(value, self.tail)
 		if t.left is None:
@@ -88,34 +93,60 @@ class Heap:
 	def heapify(self, n):
 		#Traverse up `n` heapifying along the way
 		cur = n.parent
+		print(n)
 		while cur is not None:
-			print(cur)
+			print('\th: ' + str(self.head))
+			print('\tc: ' + str(cur))
+			print('\tn: ' + str(n))
+			print()
 			if n.value > cur.value:
 				#swap nodes
 				self.swap(n, cur)
 			cur = cur.parent
+		print('/heapify\n')
 		return n
 	def swap(self, n1, n2):
 		#Swap node1 and node2
-		t = n1
-		if self.head is n1:
-			self.head = n2
-		n1.parent = n2.parent
-		n1.right  = n2.right
-		n1.left   = n2.left
-		n1.value  = n2.value
-		n2.parent = t.parent
-		n2.right  = t.right
-		n2.left   = t.left
-		n2.value  = t.value
+		print(n1.details())
+		print(n2.details())
+		t1 = Node(n1.value, n1.parent, n1.right, n1.left)
+		t2 = Node(n2.value, n2.parent, n2.right, n2.left)
+		n2 = t1
+		n1 = t2
+		if t1.parent and t1.parent.left is n2:
+			t1.parent.left = t1
+		elif t1.parent and t1.parent.right is n2:
+			t1.parent.right = t1
+		if t2.parent and t1.parent.left is n1:
+			t2.parent.left = t2
+		if t2.parent and t1.parent.left is n1:
+			t2.parent.left = t2
+		if t1.left:
+			n1.left.parent = t2
+		if n2.left:
+			n2.left.parent = t1
+		if n1.right:
+			n1.right.parent = t2
+		if n2.right:
+			n2.right.parent = t1
+
+		if n1 is self.head:
+			self.head = t2
+		if n2 is self.head:
+			self.head = t1
+		if n1 is self.tail:
+			self.tail = t2
+		if n2 is self.tail:
+			self.tail = t1
+
+		print(n1.details())
+		print(n2.details())
+		print()
 		return True
 	def shiftTail(self):
-		#Build route to tail via current size
-		#If size is odd, it is right child
-		#If size is even, it is left child
 		ns       = self.size+1  #(n)ext (s)size
 		c        = self.head    #cur node
-		r        = []
+		r        = []				#Route to traverse from head
 		didFirst = False        #Flag for skipping bottom layer
 		while ns > 1:
 			if ns%2 == 0:
@@ -168,8 +199,18 @@ if __name__ == "__main__":
 	h = Heap([33, 22,11,10,9,8,7,6,5,4,3,2,1,0,-1,-2,-3])
 	assert h.size == 17
 	assert str(h) == '33 \n22 11 \n10 9 8 7 \n6 5 4 3 2 1 0 -1 \n-2 -3 '
+	h = Heap([1])
 	h = Heap([1,2])
-	print(h)
+	print('`' + str(h) +'`')
+	assert str(h) == '2 \n1 '
+	h.add(4)
+	print('`' + str(h) +'`')
+	assert str(h) == '4 \n1 2 '
 
+	h = Heap([1,2,3,4,])
+	'''
+	1 --> 1\n2 --> 2\n1 --> 2\n1 3 --> 3\n1 2 --> 3\n1 2\n4 --> 3\n4 2\n1 --> 4\n3 2\n1
+	'''
+	#print(h)
+	#assert str(h) == '4 \n3 2 \n1 '
 	h = Heap([1,2,3,4,5,6,7,8])
-	print(h)
