@@ -190,9 +190,9 @@ if __name__ == "__main__":
 			user	0m8.575s
 			sys	0m0.026s
 		Heapsort:
-			real	0m3.018s
-			user	0m2.976s
-			sys	0m0.028s
-	
+			real	6m36.912s
+			user	6m27.607s
+			sys	0m4.914s
+
 	'''
 
